@@ -1,5 +1,9 @@
 var NAVTREEINDEX4 =
 {
+"globals_defs.html":[3,1,1],
+"index.html":[],
+"index.html":[0],
+"namespacemembers.html":[1,1,0,0],
 "namespacemembers.html":[1,1,0],
 "namespacemembers_b.html":[1,1,0,1],
 "namespacemembers_c.html":[1,1,0,2],
@@ -46,11 +50,11 @@ var NAVTREEINDEX4 =
 "namespacemembers_vars.html":[1,1,2],
 "namespacemembers_w.html":[1,1,0,19],
 "namespacemembers_z.html":[1,1,0,20],
-"namespacenc.html":[1,0,0],
 "namespacenc.html":[2,0,0],
+"namespacenc.html":[1,0,0],
 "namespacenc_1_1constants.html":[1,0,0,0],
-"namespacenc_1_1coordinates.html":[1,0,0,1],
 "namespacenc_1_1coordinates.html":[2,0,0,0],
+"namespacenc_1_1coordinates.html":[1,0,0,1],
 "namespacenc_1_1fft.html":[1,0,0,2],
 "namespacenc_1_1filter.html":[1,0,0,3],
 "namespacenc_1_1image_processing.html":[1,0,0,4],
