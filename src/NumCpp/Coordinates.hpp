@@ -4,7 +4,7 @@
 /// @version 1.0
 ///
 /// @section License
-/// Copyright 2018 David Pilger
+/// Copyright 2019 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -646,7 +646,7 @@ namespace nc
             NdArray<dtype> xyz() const
             {
                 NdArray<dtype> out = { x_, y_, z_ };
-                return std::move(out);
+                return out;
             }
 
             //============================================================================
