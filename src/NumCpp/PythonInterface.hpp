@@ -59,7 +59,7 @@ namespace nc
     /// @return     NdArray<T>
     ///
     template<typename dtype>
-    NdArray<dtype> boost2Nc(const boost::python::numpy::ndarray& inArray)
+    inline NdArray<dtype> boost2Nc(const boost::python::numpy::ndarray& inArray)
     {
         BoostNdarrayHelper helper(inArray);
         if (helper.numDimensions() > 2)
@@ -110,7 +110,7 @@ namespace nc
     /// @return     ndarray
     ///
     template<typename dtype>
-    boost::python::numpy::ndarray nc2Boost(const NdArray<dtype>& inArray)
+    inline boost::python::numpy::ndarray nc2Boost(const NdArray<dtype>& inArray) noexcept
     {
         const Shape inShape = inArray.shape();
         boost::python::tuple shape = boost::python::make_tuple(inShape.rows, inShape.cols);
@@ -134,7 +134,7 @@ namespace nc
     /// @return     std::vector<T>
     ///
     template<typename T>
-    std::vector<T> list2vector(const boost::python::list& inList)
+    inline std::vector<T> list2vector(const boost::python::list& inList) noexcept
     {
         return std::vector<T>(boost::python::stl_input_iterator<T>(inList), boost::python::stl_input_iterator<T>());
     }
@@ -147,7 +147,7 @@ namespace nc
     /// @return     boost::python::list
     ///
     template <typename T>
-    boost::python::list vector2list(std::vector<T>& inVector)
+    inline boost::python::list vector2list(std::vector<T>& inVector) noexcept
     {
         boost::python::list outList;
         for (auto& value : inVector)
@@ -166,7 +166,7 @@ namespace nc
     /// @return     boost::python::dict
     ///
     template <class Key, class Value>
-    boost::python::dict map2dict(const std::map<Key, Value>& inMap)
+    inline boost::python::dict map2dict(const std::map<Key, Value>& inMap) noexcept
     {
         boost::python::dict dictionary;
         for (auto& keyValue : inMap)
@@ -178,6 +178,14 @@ namespace nc
 #endif
 
 #ifdef INCLUDE_PYBIND_PYTHON_INTERFACE
+
+    /// Enum for the pybind array return policy
+    enum class ReturnPolicy { COPY, REFERENCE, TAKE_OWNERSHIP };
+
+    static const std::map<ReturnPolicy, std::string> returnPolicyStringMap = { {ReturnPolicy::COPY, "COPY"},
+    {ReturnPolicy::REFERENCE, "REFERENCE"},
+    {ReturnPolicy::TAKE_OWNERSHIP, "TAKE_OWNERSHIP"} };
+
     //============================================================================
     ///						converts a numpy array to a numcpp NdArray using pybind bindings
     ///                     Python will still own the underlying data.
@@ -187,12 +195,11 @@ namespace nc
     /// @return     NdArray<dtype>
     ///
     template<typename dtype>
-    NdArray<dtype> pybind2nc(pybind11::array_t<dtype, pybind11::array::c_style>& numpyArray)
+    inline NdArray<dtype> pybind2nc(pybind11::array_t<dtype, pybind11::array::c_style>& numpyArray)
     {
+        dtype* dataPtr = numpyArray.mutable_data();
         switch (numpyArray.ndim())
         {
-            dtype* dataPtr = numpyArray.mutable_data();
-
             case 0:
             {
                 return NdArray<dtype>(dataPtr, 0, 0, false);
@@ -219,27 +226,45 @@ namespace nc
     ///						converts a numcpp NdArray to numpy array using pybind bindings
     ///
     /// @param     inArray: the input array
-    /// @param     transferOwnership: whether or not to transfer ownership to python. 
-    ///                               Requires that the NdArray owns its data.
+    /// @param     returnPolicy: the return policy
     ///
     /// @return    pybind11::array_t
     ///
     template<typename dtype>
-    pybind11::array_t<dtype> nc2pybind(NdArray<dtype>& inArray, bool transferOwnership = true)
+    inline pybind11::array_t<dtype> nc2pybind(NdArray<dtype>& inArray, ReturnPolicy returnPolicy = ReturnPolicy::COPY) noexcept
     {
         Shape inShape = inArray.shape();
         std::vector<pybind11::ssize_t> shape{ inShape.rows, inShape.cols };
         std::vector<pybind11::ssize_t> strides{ inShape.cols * sizeof(dtype), sizeof(dtype) };
 
-        if (inArray.ownsInternalData() && transferOwnership)
+        switch (returnPolicy)
         {
-            typename py::capsule transfer(inArray.begin(), [](void* ptr) { delete[] ptr; });  // python now owns the memory
-            return pybind11::array_t<dtype>(shape, strides, inArray.dataRelease(), transfer);
-        }
-        else
-        {
-            typename py::capsule reference(inArray.begin(), [](void* ptr) {});  // original owner still owns the memory, passing back reference
-            return pybind11::array_t<dtype>(shape, strides, inArray.data(), reference);
+            case ReturnPolicy::COPY:
+            {
+                return pybind11::array_t<dtype>(shape, strides, inArray.data());
+            }
+            case ReturnPolicy::REFERENCE:
+            {
+                typename pybind11::capsule reference(inArray.data(), [](void* ptr) {});
+                return pybind11::array_t<dtype>(shape, strides, inArray.data(), reference);
+            }
+            case ReturnPolicy::TAKE_OWNERSHIP:
+            {
+                typename pybind11::capsule garbageCollect(inArray.dataRelease(), 
+                    [](void* ptr) 
+                    {
+                        dtype* dataPtr = reinterpret_cast<dtype*>(ptr);
+                        delete[] dataPtr; 
+                    }
+                );
+                return pybind11::array_t<dtype>(shape, strides, inArray.data(), garbageCollect);
+            }
+            default:
+            {
+                std::stringstream sstream;
+                sstream << "ReturnPolicy " << returnPolicyStringMap.at(returnPolicy) << " has not been implemented yet" << std::endl;
+                throw std::runtime_error(sstream.str());
+            }
         }
     }
 #endif

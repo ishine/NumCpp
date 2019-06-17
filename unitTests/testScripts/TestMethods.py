@@ -1066,7 +1066,7 @@ def doTest():
         print(colored('\tFAIL', 'red'))
 
     print(colored('Testing cross 2D: Axis = ROW', 'cyan'))
-    shape = NumCpp.Shape(2, np.random.randint(1,100, [1, ]).item())
+    shape = NumCpp.Shape(2, np.random.randint(1, 100, [1, ]).item())
     cArray1 = NumCpp.NdArray(shape)
     cArray2 = NumCpp.NdArray(shape)
     data1 = np.random.randint(1, 10, [shape.rows, shape.cols]).astype(np.double)
@@ -1079,7 +1079,7 @@ def doTest():
         print(colored('\tFAIL', 'red'))
 
     print(colored('Testing cross 2D: Axis = COL', 'cyan'))
-    shape = NumCpp.Shape(np.random.randint(1,100, [1, ]).item(), 2)
+    shape = NumCpp.Shape(np.random.randint(1, 100, [1, ]).item(), 2)
     cArray1 = NumCpp.NdArray(shape)
     cArray2 = NumCpp.NdArray(shape)
     data1 = np.random.randint(1, 10, [shape.rows, shape.cols]).astype(np.double)
@@ -1631,6 +1631,40 @@ def doTest():
     NumCpp.fillDiagonal(cArray, 666)
     np.fill_diagonal(data, 666)
     if np.array_equal(cArray.getNumpyArray(), data):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing find', 'cyan'))
+    shapeInput = np.random.randint(20, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randn(shape.rows, shape.cols) * 100
+    cArray.setArray(data)
+    value = data.mean()
+    cMask = cArray.operatorGreater(value)
+    cMaskArray = NumCpp.NdArrayBool(cMask.shape[0], cMask.shape[1])
+    cMaskArray.setArray(cMask)
+    idxs = NumCpp.find(cMaskArray).astype(np.int64)
+    idxsPy = np.nonzero((data > value).flatten())[0]
+    if np.array_equal(idxs.flatten(), idxsPy):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing findN', 'cyan'))
+    shapeInput = np.random.randint(20, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randn(shape.rows, shape.cols) * 100
+    cArray.setArray(data)
+    value = data.mean()
+    cMask = cArray.operatorGreater(value)
+    cMaskArray = NumCpp.NdArrayBool(cMask.shape[0], cMask.shape[1])
+    cMaskArray.setArray(cMask)
+    idxs = NumCpp.findN(cMaskArray, 8).astype(np.int64)
+    idxsPy = np.nonzero((data > value).flatten())[0]
+    if np.array_equal(idxs.flatten(), idxsPy[:8]):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))

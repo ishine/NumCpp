@@ -73,7 +73,7 @@ namespace nc
             // Method Description:
             ///						Default Constructor, not super usefull on its own
             ///
-            Quaternion() = default;
+            Quaternion() noexcept = default;
 
             //============================================================================
             // Method Description:
@@ -109,7 +109,7 @@ namespace nc
                     throw std::invalid_argument(errStr);
                 }
 
-                double norm = std::sqrt(square(inArray).template sum<double>().item());
+                double norm = std::sqrt(square(inArray).sum().item());
                 data_[0] = inArray[0] / norm;
                 data_[1] = inArray[1] / norm;
                 data_[2] = inArray[2] / norm;
@@ -136,11 +136,12 @@ namespace nc
                 }
 
                 // normalize the input vector
-                NdArray<double> normAxis = inAxis.template astype<double>() / inAxis.template norm<double>().item();
+                NdArray<double> normAxis = inAxis.template astype<double>() / 
+                    inAxis.template astype<double>().norm().item();
 
-                const double i = static_cast<double>(normAxis[0]) * std::sin(inAngle / 2.0);
-                const double j = static_cast<double>(normAxis[1]) * std::sin(inAngle / 2.0);
-                const double k = static_cast<double>(normAxis[2]) * std::sin(inAngle / 2.0);
+                const double i = normAxis[0] * std::sin(inAngle / 2.0);
+                const double j = normAxis[1] * std::sin(inAngle / 2.0);
+                const double k = normAxis[2] * std::sin(inAngle / 2.0);
                 const double s = std::cos(inAngle / 2.0);
 
                 return Quaternion(i, j, k, s);
@@ -157,7 +158,7 @@ namespace nc
             /// @return
             ///				NdArray<double>
             ///
-            static NdArray<double> angularVelocity(const Quaternion& inQuat1, const Quaternion& inQuat2, double inTime)
+            static NdArray<double> angularVelocity(const Quaternion& inQuat1, const Quaternion& inQuat2, double inTime) noexcept
             {
                 NdArray<double> q0 = inQuat1.toNdArray();
                 NdArray<double> q1 = inQuat2.toNdArray();
@@ -178,7 +179,7 @@ namespace nc
                 q(3, 1) = -inQuat2.j();
                 q(3, 2) = -inQuat2.k();
 
-                NdArray<double> omega = q.transpose().template dot<double>(qDot.transpose());
+                NdArray<double> omega = q.transpose().dot(qDot.transpose());
                 return omega *= 2;
             }
 
@@ -192,7 +193,7 @@ namespace nc
             /// @return
             ///				NdArray<double>
             ///
-            NdArray<double> angularVelocity(const Quaternion& inQuat2, double inTime) const
+            NdArray<double> angularVelocity(const Quaternion& inQuat2, double inTime) const noexcept
             {
                 return angularVelocity(*this, inQuat2, inTime);
             }
@@ -403,7 +404,7 @@ namespace nc
             // Method Description:
             ///						prints the Quaternion to the console
             ///
-            void print() const
+            void print() const noexcept
             {
                 std::cout << *this;
             }
@@ -521,7 +522,7 @@ namespace nc
             /// @return
             ///				std::string
             ///
-            std::string str() const
+            std::string str() const noexcept
             {
                 std::string output = "[" + utils::num2str(i()) + ", " + utils::num2str(j()) +
                     ", " + utils::num2str(k()) + ", " + utils::num2str(s()) + "]\n";
@@ -536,7 +537,7 @@ namespace nc
             /// @return
             ///				NdArray<double>
             ///
-            NdArray<double> toDCM() const
+            NdArray<double> toDCM() const noexcept
             {
                 NdArray<double> dcm(3);
 
@@ -760,7 +761,7 @@ namespace nc
                     throw std::invalid_argument(errStr);
                 }
 
-                return toDCM().template dot<double>(inVec.template astype<double>());
+                return toDCM().dot(inVec.template astype<double>());
             }
 
             //============================================================================
@@ -846,7 +847,7 @@ namespace nc
             /// @return
             ///				std::ostream&
             ///
-            friend std::ostream& operator<<(std::ostream& inOStream, const Quaternion& inQuat)
+            friend std::ostream& operator<<(std::ostream& inOStream, const Quaternion& inQuat) noexcept
             {
                 inOStream << inQuat.str();
                 return inOStream;
@@ -891,7 +892,7 @@ namespace nc
             /// @return
             ///				bool
             ///
-            static bool isValid(const NdArray<dtype>& inArray)
+            static bool isValid(const NdArray<dtype>& inArray) noexcept
             {
                 const Shape inShape = inArray.shape();
                 if (!(inShape.rows == inShape.cols &&

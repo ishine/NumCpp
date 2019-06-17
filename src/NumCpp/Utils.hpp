@@ -49,8 +49,11 @@ namespace nc
         /// @return     bool
         ///
         template<typename dtype>
-        bool essentiallyEqual(dtype inValue1, dtype inValue2, dtype inEpsilon = DtypeInfo<dtype>::epsilon()) noexcept
+        inline bool essentiallyEqual(dtype inValue1, dtype inValue2, dtype inEpsilon = DtypeInfo<dtype>::epsilon()) noexcept
         {
+            // only works with integer types
+            static_assert(!DtypeInfo<dtype>::isInteger(), "Type Error in utils::essentiallyEqual: only works for floating point types.");
+
             return std::abs(inValue1 - inValue2) <= ((std::abs(inValue1) > std::abs(inValue2) ? 
                 std::abs(inValue2) : std::abs(inValue1)) * inEpsilon);
         }
@@ -63,7 +66,7 @@ namespace nc
         /// @return     std::string
         ///
         template<typename dtype>
-        static std::string num2str(dtype inNumber)
+        inline std::string num2str(dtype inNumber) noexcept
         {
             return std::to_string(inNumber);
         }
@@ -76,7 +79,7 @@ namespace nc
         /// @return     squared value
         ///
         template<typename dtype>
-        static dtype sqr(dtype inValue) noexcept
+        inline dtype sqr(dtype inValue) noexcept
         {
             return inValue * inValue;
         }
@@ -89,7 +92,7 @@ namespace nc
         /// @return     cubed value
         ///
         template<typename dtype>
-        static dtype cube(dtype inValue) noexcept
+        inline dtype cube(dtype inValue) noexcept
         {
             return inValue * inValue * inValue;
         }
@@ -103,7 +106,7 @@ namespace nc
         /// @return     inValue raised to inPower
         ///
         template<typename dtype>
-        static dtype power(dtype inValue, uint8 inPower) noexcept
+        inline dtype power(dtype inValue, uint8 inPower) noexcept
         {
             if (inPower == 0)
             {
@@ -127,7 +130,7 @@ namespace nc
         /// @return     inValue raised to inPower
         ///
         template<typename dtype>
-        static double powerf(dtype inValue, double inPower) noexcept
+        inline double powerf(dtype inValue, double inPower) noexcept
         {
             return std::pow(inValue, inPower);
         }
@@ -142,7 +145,7 @@ namespace nc
         /// @return     linear interpolated point
         ///
         template<typename dtype>
-        static double interp(dtype inValue1, dtype inValue2, double inPercent) noexcept
+        inline double interp(dtype inValue1, dtype inValue2, double inPercent) noexcept
         {
             return static_cast<double>(inValue1) * (1.0 - inPercent) + static_cast<double>(inValue2) * inPercent;
         }
