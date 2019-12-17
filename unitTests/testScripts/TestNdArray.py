@@ -1,5 +1,6 @@
 import numpy as np
 from termcolor import colored
+from functools import reduce
 import os
 import getpass
 import sys
@@ -8,6 +9,11 @@ if sys.platform == 'linux':
 else:
     sys.path.append(r'../build/x64/Release')
 import NumCpp
+
+####################################################################################
+def factors(n):
+    return set(reduce(list.__add__,
+                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
 
 ####################################################################################
 def doTest():
@@ -554,6 +560,17 @@ def doTest():
     else:
         print(colored('\tFAIL', 'red'))
 
+    print(colored('Testing flatnonzero', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(0, 10, [shape.rows, shape.cols])
+    cArray.setArray(data)
+    if np.array_equal(cArray.flatnonzero().flatten().astype(np.uint32), np.flatnonzero(data)):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
     print(colored('Testing flatten', 'cyan'))
     shapeInput = np.random.randint(1, 50, [2, ])
     shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
@@ -597,6 +614,54 @@ def doTest():
     cMask.setArray(mask)
     if np.array_equal(cArray.getByMask(cMask).flatten(), data[mask].flatten()):
         print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing issorted: Axis = None', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(0, 100, [shape.rows, shape.cols])
+    dataSorted = np.sort(data.flatten()).reshape(data.shape)
+    cArray.setArray(data)
+    if not cArray.issorted(NumCpp.Axis.NONE).item():
+        cArray.setArray(dataSorted)
+        if cArray.issorted(NumCpp.Axis.NONE).item():
+            print(colored('\tPASS', 'green'))
+        else:
+            print(colored('\tFAIL', 'red'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing issorted: Axis = Row', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(0, 100, [shape.rows, shape.cols])
+    dataSorted = np.sort(data, axis=0).reshape(data.shape)
+    cArray.setArray(data)
+    if not np.all(cArray.issorted(NumCpp.Axis.ROW)):
+        cArray.setArray(dataSorted)
+        if np.all(cArray.issorted(NumCpp.Axis.ROW)):
+            print(colored('\tPASS', 'green'))
+        else:
+            print(colored('\tFAIL', 'red'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing issorted: Axis = Col', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(0, 100, [shape.rows, shape.cols])
+    dataSorted = np.sort(data, axis=1).reshape(data.shape)
+    cArray.setArray(data)
+    if not np.all(cArray.issorted(NumCpp.Axis.COL)):
+        cArray.setArray(dataSorted)
+        if np.all(cArray.issorted(NumCpp.Axis.COL)):
+            print(colored('\tPASS', 'green'))
+        else:
+            print(colored('\tFAIL', 'red'))
     else:
         print(colored('\tFAIL', 'red'))
 
@@ -782,13 +847,48 @@ def doTest():
     else:
         print(colored('\tFAIL', 'red'))
 
+    print(colored('Testing none: Axis = None', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(0, 100, [shape.rows, shape.cols])
+    cArray.setArray(data)
+    if cArray.none(NumCpp.Axis.NONE).astype(np.bool).item() == np.logical_not(np.any(data).item()):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing none: Axis = Row', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(0, 100, [shape.rows, shape.cols])
+    cArray.setArray(data)
+    if np.array_equal(cArray.none(NumCpp.Axis.ROW).flatten().astype(np.bool), np.logical_not(np.any(data, axis=0))):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing none: Axis = Column', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(0, 100, [shape.rows, shape.cols])
+    cArray.setArray(data)
+    if np.array_equal(cArray.none(NumCpp.Axis.COL).flatten().astype(np.bool), np.logical_not(np.any(data, axis=1))):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
     print(colored('Testing nonzero', 'cyan'))
     shapeInput = np.random.randint(1, 100, [2, ])
     shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
     cArray = NumCpp.NdArray(shape)
     data = np.random.randint(0, 10, [shape.rows, shape.cols])
     cArray.setArray(data)
-    if np.array_equal(cArray.nonzero(), data.flatten().nonzero()):
+    rowsC, colsC = cArray.nonzero()
+    rows, cols = data.nonzero()
+    if np.array_equal(rowsC.flatten(), rows) and np.array_equal(colsC.flatten(), cols):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))
@@ -799,7 +899,7 @@ def doTest():
     cArray = NumCpp.NdArray(shape)
     data = np.random.randint(0, 100, [shape.rows, shape.cols])
     cArray.setArray(data)
-    if cArray.norm(NumCpp.Axis.NONE) == np.linalg.norm(data.flatten()):
+    if cArray.norm(NumCpp.Axis.NONE).item() == np.linalg.norm(data.flatten()):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))
@@ -836,6 +936,7 @@ def doTest():
     if allPass:
         print(colored('\tPASS', 'green'))
     else:
+        print(colored('\tFAIL', 'red'))
         print(colored('\tFAIL', 'red'))
 
     print(colored('Testing ones', 'cyan'))
@@ -1101,7 +1202,45 @@ def doTest():
     else:
         print(colored('\tFAIL', 'red'))
 
-    print(colored('Testing reshape', 'cyan'))
+    print(colored('Testing ravel', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(1, 100, [shape.rows, shape.cols], dtype=np.uint32)
+    cArray.setArray(data)
+    if np.array_equal(cArray.ravel().flatten(), data.ravel()):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing replace', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArrayInt32(shape)
+    data = np.random.randint(1, 100, [shape.rows, shape.cols], dtype=np.uint32)
+    cArray.setArray(data)
+    oldValue = np.random.randint(1, 100, 1).item()
+    newValue = np.random.randint(1, 100, 1).item()
+    dataCopy = data.copy()
+    dataCopy[dataCopy == oldValue] = newValue
+    if np.array_equal(cArray.replace(oldValue, newValue), dataCopy):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing reshapeInt', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(1, 100, [shape.rows, shape.cols], dtype=np.uint32)
+    cArray.setArray(data)
+    newShape = data.size
+    if np.array_equal(cArray.reshape(newShape), data.reshape(1, newShape)):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing reshapeShape', 'cyan'))
     shapeInput = np.random.randint(1, 100, [2, ])
     shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
     cArray = NumCpp.NdArray(shape)
@@ -1109,6 +1248,42 @@ def doTest():
     cArray.setArray(data)
     newShape = NumCpp.Shape(shapeInput[1].item(), shapeInput[0].item())
     if np.array_equal(cArray.reshape(newShape), data.reshape(shapeInput[::-1])):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing reshapeList', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(1, 100, [shape.rows, shape.cols], dtype=np.uint32)
+    cArray.setArray(data)
+    newShape = NumCpp.Shape(shapeInput[1].item(), shapeInput[0].item())
+    if np.array_equal(cArray.reshapeList(newShape), data.reshape(shapeInput[::-1])):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing reshapeValues negative rows', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(1, 100, [shape.rows, shape.cols], dtype=np.uint32)
+    cArray.setArray(data)
+    newNumCols = np.random.choice(np.array(list(factors(data.size))), 1).item()
+    if np.array_equal(cArray.reshape(-1, newNumCols), data.reshape(-1, newNumCols)):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing reshapeValues negative cols', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(1, 100, [shape.rows, shape.cols], dtype=np.uint32)
+    cArray.setArray(data)
+    newNumRows = np.random.choice(np.array(list(factors(data.size))), 1).item()
+    if np.array_equal(cArray.reshape(newNumRows, -1), data.reshape(newNumRows, -1)):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))
@@ -1482,6 +1657,17 @@ def doTest():
     cArray1.setArray(data1)
     cArray2.setArray(data2)
     if np.array_equal(cArray1.operatorPlusArray(cArray2), data1 + data2):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing operator -', 'cyan'))
+    shapeInput = np.random.randint(1, 100, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    cArray = NumCpp.NdArray(shape)
+    data = np.random.randint(0, 100, [shape.rows, shape.cols]).astype(np.double)
+    cArray.setArray(data)
+    if np.array_equal(cArray.operatorNegative(), -data):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))

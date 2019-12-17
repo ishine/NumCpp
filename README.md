@@ -2,7 +2,7 @@
 
 ## Author: David Pilger dpilger26@gmail.com
 
-## Version: 1.0
+## Version: 1.2
 
 ## License
 
@@ -24,12 +24,14 @@ INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PA
 ## Testing
 
 **C++ Standards:** C++11, C++14, and C++17  
-**Compilers:** VS 2017/2019, GCC 7.4.0, and Clang 6.0  
+**Compilers:** VS 2017/2019, GCC 7.4.0/8.3/9.1, and Clang 6.0/8.0
 **Boost Versions:** 1.68 and 1.70  
 
 ## [Documentation](https://dpilger26.github.io/NumCpp)
 
 ## [GitHub](https://github.com/dpilger26/NumCpp)
+
+## [Installation](https://dpilger26.github.io/NumCpp/doxygen/html/md__c_1__users_pilgeda__documents__git_hub__num_cpp_install__r_e_a_d_m_e.html)
 
 ## From NumPy To NumCpp – A Quick Start Guide
 
@@ -84,14 +86,14 @@ The random module provides simple ways to create random arrays.
 
 | **NumPy**                                                | **NumCpp**                                               |
 |:--------------------------------------------------------:|:--------------------------------------------------------:|
-| ```np.random.seed(666)```	                               | ```nc::Random<>::seed(666)```                            |
-| ```np.random.randn(3, 4)```                              | ```nc::Random<double>::randn(nc::Shape(3,4))```          |
-|                                                          | ```nc::Random<double>::randn({3, 4})```                  |
-| ```np.random.randint(0, 10, [3, 4])```                   | ```nc::Random<int>::randInt(nc::Shape(3,4),0,10)```      |
-|                                                          | ```nc::Random<int>::randInt({3, 4},0,10)```              |
-| ```np.random.rand(3, 4)```                               | ```nc::Random<double>::rand(nc::Shape(3,4))```           |
-|                                                          | ```nc::Random<double>::rand({3, 4})```                   |
-| ```np.random.choice(a, 3)```                             | ```nc::Random<dtype>::choice(a, 3)```                    |
+| ```np.random.seed(666)```                                | ```nc::random::seed(666)```                              |
+| ```np.random.randn(3, 4)```                              | ```nc::random::randn<double>(nc::Shape(3,4))```          |
+|                                                          | ```nc::random::randn<double>({3, 4})```                  |
+| ```np.random.randint(0, 10, [3, 4])```                   | ```nc::random::randInt<int>(nc::Shape(3,4),0,10)```      |
+|                                                          | ```nc::random::randInt<int>({3, 4},0,10)```              |
+| ```np.random.rand(3, 4)```                               | ```nc::random::rand<double>(nc::Shape(3,4))```           |
+|                                                          | ```nc::random::rand<double>({3, 4})```                   |
+| ```np.random.choice(a, 3)```                             | ```nc::random::choice(a, 3)```                           |
 
 ### CONCATENATION
 
@@ -148,7 +150,7 @@ Logical FUNCTIONS in **NumpCpp** behave the same as **NumPy**.
 |                                                          | ```a == b```                                             |
 | ```np.not_equal(a, b)```                                 | ```nc::not_equal(a, b)```                                |
 |                                                          | ```a != b```                                             |
-| ```np.nonzero(a)```                                      | ```nc::nonzero(a)```                                     |
+| ```rows, cols = np.nonzero(a)```                         | ```auto [rows, cols] = nc::nonzero(a)```                 |
 
 ### MINIMUM, MAXIMUM, SORTING
 
@@ -185,7 +187,7 @@ Print and file output methods.  All **NumpCpp** classes support a `print()` meth
 
 | **NumPy**                                                | **NumCpp**                                               |
 |:--------------------------------------------------------:|:--------------------------------------------------------:|
-| print(a)                                                 | ```a.print()```                                          |
+| ```print(a)```                                           | ```a.print()```                                          |
 |                                                          | ```std::cout << a```                                     |
 | ```a.tofile(filename, sep=’\n’)```                       | ```a.tofile(filename, "\n")```                           |
 | ```np.fromfile(filename, sep=’\n’)```                    | ```nc::fromfile<dtype>(filename, "\n")```                |

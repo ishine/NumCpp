@@ -1,24 +1,34 @@
 
 x64/
 .vs/
+.vscode/
 .idea/
 __pycache__/
-unitTests/testScripts/termcolor.py
 .settings/
 .project/
 *.prefs
 *.tmp
-~$ToDo.docx
 *.filters
 *.user
 *.directory
 
+install/build/
+
+unitTests/testScripts/termcolor.py
 unitTests/src/cmake-build-debug/
-
 unitTests/src/cmake-build-release/
-
 unitTests/src/build/
-
 unitTests/lib/
 
-example/build/CMakeFiles/CMakeOutput\.log
+examples/ReadMe/build/
+examples/InterfaceWithEigen/build/
+examples/InterfaceWithOpenCV/build/
+examples/ReadMe/bin/
+examples/InterfaceWithEigen/bin/
+examples/InterfaceWithOpenCV/bin/
+examples/ReadMe/out/
+examples/InterfaceWithEigen/out/
+examples/InterfaceWithOpenCV/out/
+
+install/out/
+unitTests/src/out/
