@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['shape',['Shape',['../classnc_1_1_shape.html',1,'nc']]],
-  ['slice',['Slice',['../classnc_1_1_slice.html',1,'nc']]],
-  ['svd',['SVD',['../classnc_1_1linalg_1_1_s_v_d.html',1,'nc::linalg']]]
+  ['pixel',['Pixel',['../classnc_1_1image_processing_1_1_pixel.html',1,'nc::imageProcessing']]],
+  ['poly1d',['Poly1d',['../classnc_1_1polynomial_1_1_poly1d.html',1,'nc::polynomial']]]
 ];

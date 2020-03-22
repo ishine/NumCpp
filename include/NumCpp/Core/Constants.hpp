@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -55,6 +55,6 @@ namespace nc
         constexpr double        MILLISECONDS_PER_DAY = SECONDS_PER_DAY * MILLISECONDS_PER_SECOND; ///< Number of milliseconds in a day
         constexpr double        SECONDS_PER_WEEK = SECONDS_PER_DAY * DAYS_PER_WEEK; ///< Number of seconds in a week
 
-        const std::string       VERSION = "1.2"; ///< Current NumCpp version number
+        const std::string       VERSION = "1.3"; ///< Current NumCpp version number
     }
 }

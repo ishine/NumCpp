@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -304,7 +304,7 @@ namespace nc
                 q(3, 2) = -inQuat2.k();
 
                 NdArray<double> omega = q.transpose().dot(qDot.transpose());
-                return omega *= 2;
+                return omega *= 2.0;
             }
 
             //============================================================================
@@ -426,7 +426,7 @@ namespace nc
 
                 stl_algorithms::transform(inQuat1.components_.begin(), inQuat1.components_.end(),
                     inQuat2.components_.begin(), newComponents.begin(),
-                    [inPercent, oneMinus](double component1, double component2)
+                    [inPercent, oneMinus](double component1, double component2) noexcept -> double
                     {
                         return oneMinus * component1 + inPercent * component2;
                     });
@@ -724,9 +724,13 @@ namespace nc
             ///
             bool operator==(const Quaternion& inRhs) const noexcept
             {
+                auto comparitor = [](double value1, double value2) noexcept -> bool
+                {
+                    return utils::essentiallyEqual(value1, value2);
+                };
+
                 return stl_algorithms::equal(components_.begin(), components_.end(),
-                    inRhs.components_.begin(),
-                    static_cast<bool (*)(double, double)>(&utils::essentiallyEqual<double>));
+                    inRhs.components_.begin(), comparitor);
             }
 
             //============================================================================

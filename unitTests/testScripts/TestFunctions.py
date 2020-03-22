@@ -1368,13 +1368,38 @@ def doTest():
     else:
         print(colored('\tFAIL', 'red'))
 
-    print(colored('Testing diagflat array', 'cyan'))
-    numElements = np.random.randint(1, 25, [1, ]).item()
+    print(colored('Testing diag extract', 'cyan'))
+    shapeInput = np.random.randint(2, 25, [2, ])
+    shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
+    k = np.random.randint(0, np.min(shapeInput), [1,]).item()
+    elements = np.random.randint(1, 100, shapeInput)
+    cElements = NumCpp.NdArray(shape)
+    cElements.setArray(elements)
+    if np.array_equal(NumCpp.diag(cElements, k).flatten(), np.diag(elements, k)):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing diag make', 'cyan'))
+    numElements = np.random.randint(2, 25, [1, ]).item()
     shape = NumCpp.Shape(1, numElements)
+    k = np.random.randint(0, 10, [1,]).item()
     elements = np.random.randint(1, 100, [numElements,])
     cElements = NumCpp.NdArray(shape)
     cElements.setArray(elements)
-    if np.array_equal(NumCpp.diagflat(cElements), np.diagflat(elements)):
+    if np.array_equal(NumCpp.diagflat(cElements, k), np.diagflat(elements, k)):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing diagflat', 'cyan'))
+    numElements = np.random.randint(1, 25, [1, ]).item()
+    shape = NumCpp.Shape(1, numElements)
+    k = np.random.randint(0, 10, [1,]).item()
+    elements = np.random.randint(1, 100, [numElements,])
+    cElements = NumCpp.NdArray(shape)
+    cElements.setArray(elements)
+    if np.array_equal(NumCpp.diagflat(cElements, k), np.diagflat(elements, k)):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))
@@ -1387,7 +1412,7 @@ def doTest():
     cArray.setArray(data)
     offset = np.random.randint(0, min(shape.rows, shape.cols), [1, ]).item()
     if np.array_equal(NumCpp.diagonal(cArray, offset, NumCpp.Axis.ROW).astype(np.uint32).flatten(),
-                      np.diagonal(data, offset, axis1=1, axis2=0)):
+                      np.diagonal(data, offset, axis1=0, axis2=1)):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))
@@ -1400,7 +1425,7 @@ def doTest():
     cArray.setArray(data)
     offset = np.random.randint(0, min(shape.rows, shape.cols), [1, ]).item()
     if np.array_equal(NumCpp.diagonal(cArray, offset, NumCpp.Axis.COL).astype(np.uint32).flatten(),
-                      np.diagonal(data, offset, axis1=0, axis2=1)):
+                      np.diagonal(data, offset, axis1=1, axis2=0)):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))
@@ -3664,6 +3689,20 @@ def doTest():
     else:
         print(colored('\tFAIL', 'red'))
 
+    print(colored('Testing outer', 'cyan'))
+    size = np.random.randint(1, 100, [1,]).item()
+    shape = NumCpp.Shape(1, size)
+    cArray1 = NumCpp.NdArray(shape)
+    cArray2 = NumCpp.NdArray(shape)
+    data1 = np.random.randint(1, 50, [shape.rows, shape.cols], dtype=np.uint32)
+    data2 = np.random.randint(1, 50, [shape.rows, shape.cols], dtype=np.uint32)
+    cArray1.setArray(data1)
+    cArray2.setArray(data2)
+    if np.array_equal(NumCpp.outer(cArray1, cArray2).astype(np.uint32), np.outer(data1, data2)):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
     print(colored('Testing pad', 'cyan'))
     shapeInput = np.random.randint(20, 100, [2, ])
     shape = NumCpp.Shape(shapeInput[0].item(), shapeInput[1].item())
@@ -3672,7 +3711,8 @@ def doTest():
     data = np.random.randint(1, 100, [shape.rows, shape.cols])
     cArray = NumCpp.NdArray(shape)
     cArray.setArray(data)
-    if np.array_equal(NumCpp.pad(cArray, padWidth, padValue).getNumpyArray(), np.pad(data, padWidth, mode='constant', constant_values=padValue)):
+    if np.array_equal(NumCpp.pad(cArray, padWidth, padValue).getNumpyArray(),
+                      np.pad(data, padWidth, mode='constant', constant_values=padValue)):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))
@@ -4721,6 +4761,24 @@ def doTest():
     data = np.random.randint(0, 100, [shape.rows, shape.cols]).astype(np.double)
     cArray.setArray(data)
     if np.array_equal(NumCpp.sum(cArray, NumCpp.Axis.COL).getNumpyArray().flatten(), np.sum(data, axis=1)):
+        print(colored('\tPASS', 'green'))
+    else:
+        print(colored('\tFAIL', 'red'))
+
+    print(colored('Testing swap', 'cyan'))
+    shapeInput1 = np.random.randint(20, 100, [2, ])
+    shapeInput2 = np.random.randint(20, 100, [2, ])
+    shape1 = NumCpp.Shape(shapeInput1[0].item(), shapeInput1[1].item())
+    shape2 = NumCpp.Shape(shapeInput2[0].item(), shapeInput2[1].item())
+    cArray1 = NumCpp.NdArray(shape1)
+    cArray2 = NumCpp.NdArray(shape2)
+    data1 = np.random.randint(0, 100, [shape1.rows, shape1.cols]).astype(np.double)
+    data2 = np.random.randint(0, 100, [shape2.rows, shape2.cols]).astype(np.double)
+    cArray1.setArray(data1)
+    cArray2.setArray(data2)
+    NumCpp.swap(cArray1, cArray2)
+    if (np.array_equal(cArray1.getNumpyArray(), data2) and
+            np.array_equal(cArray2.getNumpyArray(), data1)):
         print(colored('\tPASS', 'green'))
     else:
         print(colored('\tFAIL', 'red'))

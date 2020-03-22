@@ -1,29 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
   <compounddef id="_read_me_8cpp-example" kind="example">
     <compoundname>ReadMe.cpp</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<sect1 id="zeros__like_8hpp_1Description">
-<title>Description</title>
-<para>A C++ Implementation of the Python Numpy Library</para>
-<para><simplesect kind="author"><para>David Pilger <ulink url="mailto:dpilger26@gmail.com">dpilger26@gmail.com</ulink> <ulink url="https://github.com/dpilger26/NumCpp">GitHub Repository</ulink></para>
-</simplesect>
-<simplesect kind="version"><para>1.2</para>
-</simplesect>
-</para>
-</sect1>
-<sect1 id="zeros__like_8hpp_1License">
-<title>License</title>
-<para>Copyright 2019 David Pilger</para>
-<para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files(the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions :</para>
-<para>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</para>
-<para>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
-</sect1>
-<sect1 id="C:/GitHub/NumCpp/include/NumCpp.hpp_1Testing">
-<title>Testing</title>
-<para>Compiled and tested with Visual Studio 2017/2019, and g++ 7.3.0/8.0, clang 6.0, with Boost version 1.68 and 1.70. Examples from the Quick Start Guide in README.md at <ulink url="https://github.com/dpilger26/NumCpp">GitHub Repository</ulink> <programlisting filename="ReadMe.cpp"><codeline><highlight class="preprocessor">#include&quot;<ref refid="_num_cpp_8hpp" kindref="compound">NumCpp.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<para>Examples from the Quick Start Guide in README.md at <ulink url="https://github.com/dpilger26/NumCpp">GitHub Repository</ulink> <programlisting filename="ReadMe.cpp"><codeline><highlight class="preprocessor">#include&quot;<ref refid="_num_cpp_8hpp" kindref="compound">NumCpp.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include&quot;boost/filesystem.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -54,9 +36,9 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a14<sp/>=<sp/>nc::random::randInt&lt;int&gt;({<sp/>10,<sp/>10<sp/>},<sp/>0,<sp/>100);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>value<sp/>=<sp/>a14(2,<sp/>3);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>slice<sp/>=<sp/>a14({<sp/>2,<sp/>5<sp/>},<sp/>{<sp/>2,<sp/>5<sp/>});</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>rowSlice<sp/>=<sp/>a14(a14.rSlice(),<sp/>7);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>rowSlice<sp/>=<sp/>a14(a14.<ref refid="classnc_1_1_nd_array_1aea1061c8c6954ca960412a7f4b323405" kindref="member">rSlice</ref>(),<sp/>7);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>values<sp/>=<sp/>a14[a14<sp/>&gt;<sp/>50];</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>a14.putMask(a14<sp/>&gt;<sp/>50,<sp/>666);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>a14.<ref refid="classnc_1_1_nd_array_1a15899cfb75a560409f474826d960fec2" kindref="member">putMask</ref>(a14<sp/>&gt;<sp/>50,<sp/>666);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>random</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacenc_1_1random_1ae71a0895ba1f3bff56f78300e3d8538a" kindref="member">nc::random::seed</ref>(666);</highlight></codeline>
@@ -77,7 +59,7 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Diagonal,<sp/>Traingular,<sp/>and<sp/>Flip</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>d<sp/>=<sp/>nc::random::randInt&lt;int&gt;({5,<sp/>5},<sp/>0,<sp/>10);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a23<sp/>=<sp/><ref refid="namespacenc_1a593c1d6df885853f900cf56935529f2c" kindref="member">nc::diagonal</ref>(d);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a23<sp/>=<sp/><ref refid="namespacenc_1ae7bb84601bd94086fe853474fa35fb64" kindref="member">nc::diagonal</ref>(d);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a24<sp/>=<sp/><ref refid="namespacenc_1acc5de905ab2bb273cb01a4fd3fd357df" kindref="member">nc::triu</ref>(a);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a25<sp/>=<sp/><ref refid="namespacenc_1ad9192133ab234457a9e9a5269b88865b" kindref="member">nc::tril</ref>(a);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a26<sp/>=<sp/><ref refid="namespacenc_1a99283060a7a0cdfeb339a22e6c073f40" kindref="member">nc::flip</ref>(d,<sp/><ref refid="namespacenc_1a5edb9ac6f596ae1256faa3f5d797dc84a54c1ed33c810f895d48c008d89f880b7" kindref="member">nc::Axis::ROW</ref>);</highlight></codeline>
@@ -111,7 +93,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a37<sp/>=<sp/>a<sp/>==<sp/>b;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a38<sp/>=<sp/><ref refid="namespacenc_1ac6c0da616068bc667891c0a460431de3" kindref="member">nc::not_equal</ref>(a,<sp/>b);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a39<sp/>=<sp/>a<sp/>!=<sp/>b;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cpp_structured_bindings</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[rows,<sp/>cols]<sp/>=<sp/><ref refid="namespacenc_1adda26afad96d27aed7db0fa5ec818d4f" kindref="member">nc::nonzero</ref>(a);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Minimum,<sp/>Maximum,<sp/>Sorting</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>value1<sp/>=<sp/><ref refid="namespacenc_1a1dcd97ed6259f6a019ff8b59f2ae1adc" kindref="member">nc::min</ref>(a);</highlight></codeline>
@@ -157,7 +142,7 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>xp<sp/>=<sp/>nc::linspace&lt;double&gt;(0.0,<sp/>2.0<sp/>*<sp/><ref refid="namespacenc_1_1constants_1a2f1219a120c9cc1434486d9de75a8221" kindref="member">nc::constants::pi</ref>,<sp/>100);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fp<sp/>=<sp/><ref refid="namespacenc_1a0d66dc207eb871bba26bff4838992fef" kindref="member">nc::sin</ref>(xp);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>nc::linspace&lt;double&gt;(0.0,<sp/>2.0<sp/>*<sp/><ref refid="namespacenc_1_1constants_1a2f1219a120c9cc1434486d9de75a8221" kindref="member">nc::constants::pi</ref>,<sp/>1000);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespacenc_1_1random_1aabf17da1f94e6da4ec99085feca10799" kindref="member">f</ref><sp/>=<sp/><ref refid="namespacenc_1a5b9584eeac344f9d37beb6be475300ca" kindref="member">nc::interp</ref>(x,<sp/>xp,<sp/>fp);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespacenc_1_1random_1a00229c23da25284daf436c0a338ea25c" kindref="member">f</ref><sp/>=<sp/><ref refid="namespacenc_1a5b9584eeac344f9d37beb6be475300ca" kindref="member">nc::interp</ref>(x,<sp/>xp,<sp/>fp);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Exponential<sp/>Functions</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a56<sp/>=<sp/><ref refid="namespacenc_1ab138b681799463226a8ef60f87d30ac7" kindref="member">nc::exp</ref>(a);</highlight></codeline>
@@ -205,8 +190,6 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</sect1>
-    </detaileddescription>
+</programlisting> </para>    </detaileddescription>
   </compounddef>
 </doxygen>

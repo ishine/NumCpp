@@ -150,6 +150,22 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    dtype back(const NdArray<dtype>& self)
+    {
+        return self.back();
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    dtype backReference(NdArray<dtype>& self)
+    {
+        return self.back();
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray clip(const NdArray<dtype>& self, dtype inMin, dtype inMax)
     {
         return nc2Boost(self.clip(inMin, inMax));
@@ -226,6 +242,22 @@ namespace NdArrayInterface
     np::ndarray flatten(const NdArray<dtype>& self)
     {
         return nc2Boost(self.flatten());
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    dtype front(const NdArray<dtype>& self)
+    {
+        return self.front();
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    dtype frontReference(NdArray<dtype>& self)
+    {
+        return self.front();
     }
 
     //================================================================================
@@ -687,6 +719,14 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorPlusScalerReversed(const NdArray<dtype>& self, dtype inScaler)
+    {
+        return nc2Boost(inScaler + self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorPlusArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
     {
         return nc2Boost(self + inOtherArray);
@@ -711,6 +751,14 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorMinusScalerReversed(const NdArray<dtype>& self, dtype inScaler)
+    {
+        return nc2Boost(inScaler - self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorMinusArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
     {
         return nc2Boost(self - inOtherArray);
@@ -722,6 +770,14 @@ namespace NdArrayInterface
     np::ndarray operatorMultiplyScaler(const NdArray<dtype>& self, dtype inScaler)
     {
         return nc2Boost(self * inScaler);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorMultiplyScalerReversed(const NdArray<dtype>& self, dtype inScaler)
+    {
+        return nc2Boost(inScaler * self);
     }
 
     //================================================================================
@@ -743,6 +799,14 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorDivideScalerReversed(const NdArray<dtype>& self, dtype inScaler)
+    {
+        return nc2Boost(inScaler / self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorDivideArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
     {
         return nc2Boost(self / inOtherArray);
@@ -754,6 +818,14 @@ namespace NdArrayInterface
     np::ndarray operatorModulusScaler(const NdArray<dtype>& self, dtype inScaler)
     {
         return nc2Boost(self % inScaler);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorModulusScalerReversed(const NdArray<dtype>& self, dtype inScaler)
+    {
+        return nc2Boost(inScaler % self);
     }
 
     //================================================================================
@@ -775,6 +847,14 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorBitwiseOrScalerReversed(const NdArray<dtype>& self, dtype inScaler)
+    {
+        return nc2Boost(inScaler | self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorBitwiseOrArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
     {
         return nc2Boost(self | inOtherArray);
@@ -786,6 +866,14 @@ namespace NdArrayInterface
     np::ndarray operatorBitwiseAndScaler(const NdArray<dtype>& self, dtype inScaler)
     {
         return nc2Boost(self & inScaler);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorBitwiseAndScalerReversed(const NdArray<dtype>& self, dtype inScaler)
+    {
+        return nc2Boost(inScaler & self);
     }
 
     //================================================================================
@@ -807,6 +895,14 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorBitwiseXorScalerReversed(const NdArray<dtype>& self, dtype inScaler)
+    {
+        return nc2Boost(inScaler ^ self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorBitwiseXorArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
     {
         return nc2Boost(self ^ inOtherArray);
@@ -818,6 +914,54 @@ namespace NdArrayInterface
     np::ndarray operatorBitwiseNot(const NdArray<dtype>& self)
     {
         return nc2Boost(~self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorLogicalAndArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
+    {
+        return nc2Boost(self && inOtherArray);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorLogicalAndScalar(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(self && inValue);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorLogicalAndScalarReversed(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(inValue && self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorLogicalOrArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
+    {
+        return nc2Boost(self || inOtherArray);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorLogicalOrScalar(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(self || inValue);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorLogicalOrScalarReversed(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(inValue || self);
     }
 
     //================================================================================
@@ -839,6 +983,14 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorEqualityScalerReversed(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(inValue == self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorEqualityArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
     {
         return nc2Boost(self == inOtherArray);
@@ -847,9 +999,41 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorNotEqualityScaler(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(self != inValue);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorNotEqualityScalerReversed(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(inValue != self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorNotEqualityArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
+    {
+        return nc2Boost(self != inOtherArray);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorLessScaler(const NdArray<dtype>& self, dtype inValue)
     {
         return nc2Boost(self < inValue);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorLessScalerReversed(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(inValue < self);
     }
 
     //================================================================================
@@ -871,6 +1055,14 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorGreaterScalerReversed(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(inValue > self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorGreaterArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
     {
         return nc2Boost(self > inOtherArray);
@@ -882,6 +1074,14 @@ namespace NdArrayInterface
     np::ndarray operatorLessEqualScaler(const NdArray<dtype>& self, dtype inValue)
     {
         return nc2Boost(self <= inValue);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray operatorLessEqualScalerReversed(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(inValue <= self);
     }
 
     //================================================================================
@@ -903,25 +1103,17 @@ namespace NdArrayInterface
     //================================================================================
 
     template<typename dtype>
+    np::ndarray operatorGreaterEqualScalerReversed(const NdArray<dtype>& self, dtype inValue)
+    {
+        return nc2Boost(inValue >= self);
+    }
+
+    //================================================================================
+
+    template<typename dtype>
     np::ndarray operatorGreaterEqualArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
     {
         return nc2Boost(self >= inOtherArray);
-    }
-
-    //================================================================================
-
-    template<typename dtype>
-    np::ndarray operatorNotEqualityScaler(const NdArray<dtype>& self, dtype inValue)
-    {
-        return nc2Boost(self != inValue);
-    }
-
-    //================================================================================
-
-    template<typename dtype>
-    np::ndarray operatorNotEqualityArray(const NdArray<dtype>& self, const NdArray<dtype>& inOtherArray)
-    {
-        return nc2Boost(self != inOtherArray);
     }
 
     //================================================================================
@@ -1532,9 +1724,17 @@ namespace MethodsInterface
     //================================================================================
 
     template<typename dtype>
-    np::ndarray diagflat(const NdArray<dtype>& inArray)
+    np::ndarray diag(const NdArray<dtype>& inArray, int32 k)
     {
-        return nc2Boost(nc::diagflat(inArray));
+        return nc2Boost(nc::diag(inArray, k));
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray diagflat(const NdArray<dtype>& inArray, int32 k)
+    {
+        return nc2Boost(nc::diagflat(inArray, k));
     }
 
     //================================================================================
@@ -2081,6 +2281,14 @@ namespace MethodsInterface
     np::ndarray onesShape(const Shape& inShape)
     {
         return nc2Boost(ones<dtype>(inShape));
+    }
+
+    //================================================================================
+
+    template<typename dtype>
+    np::ndarray outer(const NdArray<dtype>& inArray1, const NdArray<dtype>& inArray2)
+    {
+        return nc2Boost(nc::outer(inArray1, inArray2));
     }
 
     //================================================================================
@@ -2680,7 +2888,17 @@ namespace LinalgInterface
     template<typename dtype>
     np::ndarray multi_dot(const NdArray<dtype>& inArray1, const NdArray<dtype>& inArray2, const NdArray<dtype>& inArray3, const NdArray<dtype>& inArray4)
     {
-        return nc2Boost(linalg::multi_dot({ inArray1 ,inArray2, inArray3, inArray4 }));
+        return nc2Boost(linalg::multi_dot({ inArray1, inArray2, inArray3, inArray4 }));
+    }
+
+    template<typename dtype>
+    bp::tuple pivotLU_decomposition(const NdArray<dtype>& inArray)
+    {
+        auto lup = linalg::pivotLU_decomposition(inArray);
+        auto& l = std::get<0>(lup);
+        auto& u = std::get<1>(lup);
+        auto& p = std::get<2>(lup);
+        return bp::make_tuple(nc2Boost(l), nc2Boost(u), nc2Boost(p));
     }
 }
 
@@ -2781,6 +2999,23 @@ namespace RotationsInterface
         auto v = boost2Nc<T>(inV);
 
         return nc2Boost(rotations::rodriguesRotation(k, inTheta, v));
+    }
+
+    template<typename T>
+    np::ndarray wahbasProblem(np::ndarray& inWk, np::ndarray& inVk)
+    {
+        auto wk = boost2Nc<T>(inWk);
+        auto vk = boost2Nc<T>(inVk);
+        return nc2Boost(rotations::wahbasProblem(wk, vk));
+    }
+
+    template<typename T>
+    np::ndarray wahbasProblemWeighted(np::ndarray& inWk, np::ndarray& inVk, np::ndarray& inAk)
+    {
+        auto wk = boost2Nc<T>(inWk);
+        auto vk = boost2Nc<T>(inVk);
+        auto ak = boost2Nc<T>(inAk);
+        return nc2Boost(rotations::wahbasProblem(wk, vk, ak));
     }
 }
 
@@ -2981,6 +3216,86 @@ namespace PolynomialInterface
         auto value = polynomial::spherical_harmonic(n, m, theta, phi);
         std::vector<double> valueVec = {value.real(), value.imag()};
         return vector2list(valueVec);
+    }
+}
+
+namespace RootsInterface
+{
+    constexpr double EPSILON = 1e-10;
+
+    //================================================================================
+
+    double bisection(const polynomial::Poly1d<double>p, double a, double b)
+    {
+        auto rootFinder = roots::Bisection(EPSILON, p);
+        return rootFinder.solve(a, b);
+    }
+
+    //================================================================================
+
+    double brent(const polynomial::Poly1d<double>p, double a, double b)
+    {
+        auto rootFinder = roots::Brent(EPSILON, p);
+        return rootFinder.solve(a, b);
+    }
+
+    //================================================================================
+
+    double dekker(const polynomial::Poly1d<double>p, double a, double b)
+    {
+        auto rootFinder = roots::Dekker(EPSILON, p);
+        return rootFinder.solve(a, b);
+    }
+
+    //================================================================================
+
+    double newton(const polynomial::Poly1d<double>p, double x)
+    {
+        auto pPrime = p.deriv();
+        auto rootFinder = roots::Newton(EPSILON, p, pPrime);
+        return rootFinder.solve(x);
+    }
+
+    //================================================================================
+
+    double secant(const polynomial::Poly1d<double>p, double a, double b)
+    {
+        auto rootFinder = roots::Secant(EPSILON, p);
+        return rootFinder.solve(a, b);
+    }
+}
+
+namespace IntegrateInterface
+{
+    constexpr uint32 NUM_ITERATIONS = 100;
+    constexpr uint32 NUM_SUBDIVISIONS = 10000;
+
+    //================================================================================
+
+    double gauss_legendre(const polynomial::Poly1d<double>& p, double a, double b)
+    {
+        return integrate::gauss_legendre(a, b, NUM_ITERATIONS, p);
+    }
+
+    //================================================================================
+
+    double romberg(const polynomial::Poly1d<double>& p, double a, double b)
+    {
+        return integrate::romberg(a, b, 10, p);
+    }
+
+    //================================================================================
+
+    double simpson(const polynomial::Poly1d<double>& p, double a, double b)
+    {
+        return integrate::simpson(a, b, NUM_SUBDIVISIONS, p);
+    }
+
+    //================================================================================
+
+    double trapazoidal(const polynomial::Poly1d<double>& p, double a, double b)
+    {
+        return integrate::trapazoidal(a, b, NUM_SUBDIVISIONS, p);
     }
 }
 
@@ -3724,7 +4039,8 @@ BOOST_PYTHON_MODULE(NumCpp)
         .def("argmax", &NdArrayInterface::argmax<double>)
         .def("argmin", &NdArrayInterface::argmin<double>)
         .def("argsort", &NdArrayInterface::argsort<double>)
-        .def("back", &NdArrayDouble::back)
+        .def("back", &NdArrayInterface::back<double>)
+        .def("backReference", &NdArrayInterface::backReference<double>)
         .def("clip", &NdArrayInterface::clip<double>)
         .def("copy", &NdArrayInterface::copy<double>)
         .def("column", &NdArrayDouble::column)
@@ -3737,7 +4053,8 @@ BOOST_PYTHON_MODULE(NumCpp)
         .def("fill", &NdArrayInterface::fill<double>)
         .def("flatnonzero", &NdArrayInterface::flatnonzero<double>)
         .def("flatten", &NdArrayInterface::flatten<double>)
-        .def("front", &NdArrayDouble::front)
+        .def("front", &NdArrayInterface::front<double>)
+        .def("frontReference", &NdArrayInterface::frontReference<double>)
         .def("get", &NdArrayInterface::getValueFlat<double>)
         .def("get", &NdArrayInterface::getValueRowCol<double>)
         .def("get", &NdArrayInterface::getSlice1D<double>)
@@ -3749,6 +4066,7 @@ BOOST_PYTHON_MODULE(NumCpp)
         .def("isempty", &NdArrayDouble::isempty)
         .def("isflat", &NdArrayDouble::isflat)
         .def("issorted", &NdArrayInterface::issorted<double>)
+        .def("issquare", &NdArrayDouble::issquare)
         .def("item", &NdArrayDouble::item)
         .def("max", &NdArrayInterface::max<double>)
         .def("min", &NdArrayInterface::min<double>)
@@ -3805,26 +4123,36 @@ BOOST_PYTHON_MODULE(NumCpp)
         .def("var", &NdArrayInterface::var<double>)
         .def("zeros", &NdArrayDouble::zeros, bp::return_internal_reference<>())
         .def("operatorPlusScaler", &NdArrayInterface::operatorPlusScaler<double>)
+        .def("operatorPlusScalerReversed", &NdArrayInterface::operatorPlusScalerReversed<double>)
         .def("operatorPlusArray", &NdArrayInterface::operatorPlusArray<double>)
         .def("operatorNegative", &NdArrayInterface::operatorNegative<double>)
         .def("operatorMinusScaler", &NdArrayInterface::operatorMinusScaler<double>)
+        .def("operatorMinusScalerReversed", &NdArrayInterface::operatorMinusScalerReversed<double>)
         .def("operatorMinusArray", &NdArrayInterface::operatorMinusArray<double>)
         .def("operatorMultiplyScaler", &NdArrayInterface::operatorMultiplyScaler<double>)
+        .def("operatorMultiplyScalerReversed", &NdArrayInterface::operatorMultiplyScalerReversed<double>)
         .def("operatorMultiplyArray", &NdArrayInterface::operatorMultiplyArray<double>)
         .def("operatorDivideScaler", &NdArrayInterface::operatorDivideScaler<double>)
+        .def("operatorDivideScalerReversed", &NdArrayInterface::operatorDivideScalerReversed<double>)
         .def("operatorDivideArray", &NdArrayInterface::operatorDivideArray<double>)
         .def("operatorEquality", &NdArrayInterface::operatorEqualityScaler<double>)
+        .def("operatorEqualityReversed", &NdArrayInterface::operatorEqualityScalerReversed<double>)
         .def("operatorEquality", &NdArrayInterface::operatorEqualityArray<double>)
+        .def("operatorNotEquality", &NdArrayInterface::operatorNotEqualityScaler<double>)
+        .def("operatorNotEqualityReversed", &NdArrayInterface::operatorNotEqualityScalerReversed<double>)
+        .def("operatorNotEquality", &NdArrayInterface::operatorNotEqualityArray<double>)
         .def("operatorLess", &NdArrayInterface::operatorLessScaler<double>)
+        .def("operatorLessReversed", &NdArrayInterface::operatorLessScalerReversed<double>)
         .def("operatorLess", &NdArrayInterface::operatorLessArray<double>)
         .def("operatorGreater", &NdArrayInterface::operatorGreaterScaler<double>)
+        .def("operatorGreaterReversed", &NdArrayInterface::operatorGreaterScalerReversed<double>)
         .def("operatorGreater", &NdArrayInterface::operatorGreaterArray<double>)
         .def("operatorLessEqual", &NdArrayInterface::operatorLessEqualScaler<double>)
+        .def("operatorLessEqualReversed", &NdArrayInterface::operatorLessEqualScalerReversed<double>)
         .def("operatorLessEqual", &NdArrayInterface::operatorLessEqualArray<double>)
         .def("operatorGreaterEqual", &NdArrayInterface::operatorGreaterEqualScaler<double>)
+        .def("operatorGreaterEqualReversed", &NdArrayInterface::operatorGreaterEqualScalerReversed<double>)
         .def("operatorGreaterEqual", &NdArrayInterface::operatorGreaterEqualArray<double>)
-        .def("operatorNotEquality", &NdArrayInterface::operatorNotEqualityScaler<double>)
-        .def("operatorNotEquality", &NdArrayInterface::operatorNotEqualityArray<double>)
         .def("operatorPrePlusPlus", &NdArrayInterface::operatorPrePlusPlus<double>)
         .def("operatorPostPlusPlus", &NdArrayInterface::operatorPostPlusPlus<double>)
         .def("operatorPreMinusMinus", &NdArrayInterface::operatorPreMinusMinus<double>)
@@ -3845,14 +4173,24 @@ BOOST_PYTHON_MODULE(NumCpp)
         .def("byteswap", &NdArrayInt::byteswap, bp::return_internal_reference<>())
         .def("newbyteorder", &NdArrayInterface::newbyteorder<uint32>)
         .def("operatorModulusScaler", &NdArrayInterface::operatorModulusScaler<uint32>)
+        .def("operatorModulusScalerReversed", &NdArrayInterface::operatorModulusScalerReversed<uint32>)
         .def("operatorModulusArray", &NdArrayInterface::operatorModulusArray<uint32>)
         .def("operatorBitwiseOrScaler", &NdArrayInterface::operatorBitwiseOrScaler<uint32>)
+        .def("operatorBitwiseOrScalerReversed", &NdArrayInterface::operatorBitwiseOrScalerReversed<uint32>)
         .def("operatorBitwiseOrArray", &NdArrayInterface::operatorBitwiseOrArray<uint32>)
         .def("operatorBitwiseAndScaler", &NdArrayInterface::operatorBitwiseAndScaler<uint32>)
+        .def("operatorBitwiseAndScalerReversed", &NdArrayInterface::operatorBitwiseAndScalerReversed<uint32>)
         .def("operatorBitwiseAndArray", &NdArrayInterface::operatorBitwiseAndArray<uint32>)
         .def("operatorBitwiseXorScaler", &NdArrayInterface::operatorBitwiseXorScaler<uint32>)
+        .def("operatorBitwiseXorScalerReversed", &NdArrayInterface::operatorBitwiseXorScalerReversed<uint32>)
         .def("operatorBitwiseXorArray", &NdArrayInterface::operatorBitwiseXorArray<uint32>)
         .def("operatorBitwiseNot", &NdArrayInterface::operatorBitwiseNot<uint32>)
+        .def("operatorLogicalAndArray", &NdArrayInterface::operatorLogicalAndArray<uint32>)
+        .def("operatorLogicalAndScalar", &NdArrayInterface::operatorLogicalAndScalar<uint32>)
+        .def("operatorLogicalAndScalarReversed", &NdArrayInterface::operatorLogicalAndScalarReversed<uint32>)
+        .def("operatorLogicalOrArray", &NdArrayInterface::operatorLogicalOrArray<uint32>)
+        .def("operatorLogicalOrScalar", &NdArrayInterface::operatorLogicalOrScalar<uint32>)
+        .def("operatorLogicalOrScalarReversed", &NdArrayInterface::operatorLogicalOrScalarReversed<uint32>)
         .def("operatorNot", &NdArrayInterface::operatorNot<uint32>)
         .def("operatorBitshiftLeft", &NdArrayInterface::operatorBitshiftLeft<uint32>)
         .def("operatorBitshiftRight", &NdArrayInterface::operatorBitshiftRight<uint32>);
@@ -4023,6 +4361,7 @@ BOOST_PYTHON_MODULE(NumCpp)
     bp::def("degreesArray", &MethodsInterface::degreesArray<double>);
     bp::def("deleteIndicesScaler", &MethodsInterface::deleteIndicesScaler<double>);
     bp::def("deleteIndicesSlice", &MethodsInterface::deleteIndicesSlice<double>);
+    bp::def("diag", &MethodsInterface::diag<double>);
     bp::def("diagflat", &MethodsInterface::diagflat<double>);
     bp::def("diagonal", &MethodsInterface::diagonal<double>);
     bp::def("diff", &MethodsInterface::diff<double>);
@@ -4148,7 +4487,8 @@ BOOST_PYTHON_MODULE(NumCpp)
     bp::def("onesSquare", &MethodsInterface::onesSquare<double>);
     bp::def("onesRowCol", &MethodsInterface::onesRowCol<double>);
     bp::def("onesShape", &MethodsInterface::onesShape<double>);
-    bp::def("ones_like", &ones_like<double>);
+    bp::def("ones_like", &ones_like<double, double>);
+    bp::def("outer", &MethodsInterface::outer<double>);
     bp::def("pad", &pad<double>);
     bp::def("partition", &partition<double>);
     bp::def("percentile", &percentile<double>);
@@ -4209,6 +4549,7 @@ BOOST_PYTHON_MODULE(NumCpp)
     bp::def("subtract", &MethodsInterface::subtractArrays<double>);
     bp::def("sum", &sum<double>);
     bp::def("swapaxes", &swapaxes<double>);
+    bp::def("swap", &nc::swap<double>);
     bp::def("tanScaler", &MethodsInterface::tanScaler<double>);
     bp::def("tanArray", &MethodsInterface::tanArray<double>);
     bp::def("tanhScaler", &MethodsInterface::tanhScaler<double>);
@@ -4242,7 +4583,7 @@ BOOST_PYTHON_MODULE(NumCpp)
     bp::def("zerosRowCol", &MethodsInterface::zerosRowCol<double>);
     bp::def("zerosShape", &MethodsInterface::zerosShape<double>);
     bp::def("zerosList", &MethodsInterface::zerosList<double>);
-    bp::def("zeros_like", &zeros_like<double>);
+    bp::def("zeros_like", &zeros_like<double, double>);
 
     // Utils.hpp
     bp::def("num2str", &utils::num2str<double>);
@@ -4306,47 +4647,159 @@ BOOST_PYTHON_MODULE(NumCpp)
     bp::def("powerf", &utils::powerf);
 
     // Random.hpp
-    bp::def("bernoulli", &random::bernoulli<double>);
-    bp::def("beta", &random::beta<double>);
-    bp::def("binomial", &random::binomial<int32>);
-    bp::def("chiSquare", &random::chiSquare<double>);
+    NdArray<double> (*bernoulliArray)(const Shape&, double) = &random::bernoulli<double>;
+    double (*bernoilliScalar)(double) = &random::bernoulli<double>;
+    bp::def("bernoulli", bernoulliArray);
+    bp::def("bernoulli", bernoilliScalar);
+
+    NdArray<double> (*betaArray)(const Shape&, double, double) = &random::beta<double>;
+    double (*betaScalar)(double, double) = &random::beta<double>;
+    bp::def("beta", betaArray);
+    bp::def("beta", betaScalar);
+
+    NdArray<int32> (*binomialArray)(const Shape&, int32, double) = &random::binomial<int32>;
+    int32 (*binomialScalar)(int32, double) = &random::binomial<int32>;
+    bp::def("binomial", binomialArray);
+    bp::def("binomial", binomialScalar);
+
+    NdArray<double> (*cauchyArray)(const Shape&, double, double) = &random::cauchy<double>;
+    double (*cauchyScalar)(double, double) = &random::cauchy<double>;
+    bp::def("cauchy", cauchyArray);
+    bp::def("cauchy", cauchyScalar);
+
+
+    NdArray<double> (*chiSquareArray)(const Shape&, double) = &random::chiSquare<double>;
+    double (*chiSquareScalar)(double) = &random::chiSquare<double>;
+    bp::def("chiSquare", chiSquareArray);
+    bp::def("chiSquare", chiSquareScalar);
+
+
     bp::def("choiceSingle", &RandomInterface::choiceSingle<double>);
     bp::def("choiceMultiple", &RandomInterface::choiceMultiple<double>);
-    bp::def("cauchy", &random::cauchy<double>);
-    bp::def("discrete", &random::discrete<int32>);
-    bp::def("exponential", &random::exponential<double>);
-    bp::def("extremeValue", &random::extremeValue<double>);
-    bp::def("f", &random::f<double>);
-    bp::def("gamma", &random::gamma<double>);
-    bp::def("geometric", &random::geometric<int32>);
-    bp::def("laplace", &random::laplace<double>);
-    bp::def("lognormal", &random::lognormal<double>);
-    bp::def("negativeBinomial", &random::negativeBinomial<int32>);
-    bp::def("nonCentralChiSquared", &random::nonCentralChiSquared<double>);
-    bp::def("normal", &random::normal<double>);
+
+    NdArray<int32> (*discreteArray)(const Shape&, const NdArray<double>&) = &random::discrete<int32>;
+    int32 (*discreteScalar)(const NdArray<double>&) = &random::discrete<int32>;
+    bp::def("discrete", discreteArray);
+    bp::def("discrete", discreteScalar);
+
+    NdArray<double> (*exponentialArray)(const Shape&, double) = &random::exponential<double>;
+    double (*exponentialScalar)(double) = &random::exponential<double>;
+    bp::def("exponential", exponentialArray);
+    bp::def("exponential", exponentialScalar);
+
+    NdArray<double> (*extremeValueArray)(const Shape&, double, double) = &random::extremeValue<double>;
+    double (*extremeValueScalar)(double, double) = &random::extremeValue<double>;
+    bp::def("extremeValue", extremeValueArray);
+    bp::def("extremeValue", extremeValueScalar);
+
+    NdArray<double> (*fArray)(const Shape&, double, double) = &random::f<double>;
+    double (*fScalar)(double, double) = &random::f<double>;
+    bp::def("f", fArray);
+    bp::def("f", fScalar);
+
+    NdArray<double> (*gammaArray)(const Shape&, double, double) = &random::gamma<double>;
+    double (*gammaScalar)(double, double) = &random::gamma<double>;
+    bp::def("gamma", gammaArray);
+    bp::def("gamma", gammaScalar);
+
+    NdArray<int32> (*geometricArray)(const Shape&, double) = &random::geometric<int32>;
+    int32 (*geometricScalar)(double) = &random::geometric<int32>;
+    bp::def("geometric", geometricArray);
+    bp::def("geometric", geometricScalar);
+
+    NdArray<double> (*laplaceArray)(const Shape&, double, double) = &random::laplace<double>;
+    double (*laplaceScalar)(double, double) = &random::laplace<double>;
+    bp::def("laplace", laplaceArray);
+    bp::def("laplace", laplaceScalar);
+
+    NdArray<double> (*lognormalArray)(const Shape&, double, double) = &random::lognormal<double>;
+    double (*lognormalScalar)(double, double) = &random::lognormal<double>;
+    bp::def("lognormal", lognormalArray);
+    bp::def("lognormal", lognormalScalar);
+
+    NdArray<int32> (*negativeBinomialArray)(const Shape&, int32, double) = &random::negativeBinomial<int32>;
+    int32 (*negativeBinomialScalar)(int32, double) = &random::negativeBinomial<int32>;
+    bp::def("negativeBinomial", negativeBinomialArray);
+    bp::def("negativeBinomial", negativeBinomialScalar);
+
+    NdArray<double> (*nonCentralChiSquaredArray)(const Shape&, double, double) = &random::nonCentralChiSquared<double>;
+    double (*nonCentralChiSquaredScalar)(double, double) = &random::nonCentralChiSquared<double>;
+    bp::def("nonCentralChiSquared", nonCentralChiSquaredArray);
+    bp::def("nonCentralChiSquared", nonCentralChiSquaredScalar);
+
+    NdArray<double> (*normalArray)(const Shape&, double, double) = &random::normal<double>;
+    double (*normalScalar)(double, double) = &random::normal<double>;
+    bp::def("normal", normalArray);
+    bp::def("normal", normalScalar);
+
     bp::def("permutationScaler", &RandomInterface::permutationScaler<double>);
     bp::def("permutationArray", &RandomInterface::permutationArray<double>);
-    bp::def("poisson", &random::poisson<int32>);
-    bp::def("rand", &random::rand<double>);
-    bp::def("randN", &random::randN<double>);
-    bp::def("randFloat", &random::randFloat<double>);
-    bp::def("randInt", &random::randInt<int32>);
+
+    NdArray<int32> (*poissonArray)(const Shape&, double) = &random::poisson<int32>;
+    int32 (*poissonScalar)(double) = &random::poisson<int32>;
+    bp::def("poisson", poissonArray);
+    bp::def("poisson", poissonScalar);
+
+    NdArray<double> (*randArray)(const Shape&) = &random::rand<double>;
+    double (*randScalar)() = &random::rand<double>;
+    bp::def("rand", randArray);
+    bp::def("rand", randScalar);
+
+    NdArray<double> (*randFloatArray)(const Shape&, double, double) = &random::randFloat<double>;
+    double (*randFloatScalar)(double, double) = &random::randFloat<double>;
+    bp::def("randFloat", randFloatArray);
+    bp::def("randFloat", randFloatScalar);
+
+    NdArray<int32> (*randIntArray)(const Shape&, int32, int32) = &random::randInt<int32>;
+    int32 (*randIntScalar)(int32, int32) = &random::randInt<int32>;
+    bp::def("randInt", randIntArray);
+    bp::def("randInt", randIntScalar);
+
+    NdArray<double> (*randNArray)(const Shape&) = &random::randN<double>;
+    double (*randNScalar)() = &random::randN<double>;
+    bp::def("randN", randNArray);
+    bp::def("randN", randNScalar);
+
     bp::def("seed", &random::seed);
     bp::def("shuffle", &random::shuffle<double>);
-    bp::def("studentT", &random::studentT<double>);
-    bp::def("standardNormal", &random::standardNormal<double>);
-    bp::def("triangle", &random::triangle<double>);
-    bp::def("uniform", &random::uniform<double>);
+
+    NdArray<double> (*standardNormalArray)(const Shape&) = &random::standardNormal<double>;
+    double (*standardNormalScalar)() = &random::standardNormal<double>;
+    bp::def("standardNormal", standardNormalArray);
+    bp::def("standardNormal", standardNormalScalar);
+
+    NdArray<double> (*studentTArray)(const Shape&, double) = &random::studentT<double>;
+    double (*studentTScalar)(double) = &random::studentT<double>;
+    bp::def("studentT", studentTArray);
+    bp::def("studentT", studentTScalar);
+
+    NdArray<double> (*triangleArray)(const Shape&, double, double, double) = &random::triangle<double>;
+    double (*triangleScalar)(double, double, double) = &random::triangle<double>;
+    bp::def("triangle", triangleArray);
+    bp::def("triangle", triangleScalar);
+
+    NdArray<double> (*uniformArray)(const Shape&, double, double) = &random::uniform<double>;
+    double (*uniformScalar)(double, double) = &random::uniform<double>;
+    bp::def("uniform", uniformArray);
+    bp::def("uniform", uniformScalar);
+
     bp::def("uniformOnSphere", &random::uniformOnSphere<double>);
-    bp::def("weibull", &random::weibull<double>);
+
+    NdArray<double> (*weibullArray)(const Shape&, double, double) = &random::weibull<double>;
+    double (*weibullScalar)(double, double) = &random::weibull<double>;
+    bp::def("weibull", weibullArray);
+    bp::def("weibull", weibullScalar);
 
     // Linalg.hpp
+    bp::def("cholesky", &linalg::cholesky<double>);
     bp::def("det", &linalg::det<double>);
     bp::def("hat", &LinalgInterface::hatArray<double>);
     bp::def("inv", &linalg::inv<double>);
     bp::def("lstsq", &linalg::lstsq<double>);
+    bp::def("lu_decomposition", &linalg::lu_decomposition<double>);
     bp::def("matrix_power", &linalg::matrix_power<double>);
     bp::def("multi_dot", &LinalgInterface::multi_dot<double>);
+    bp::def("pivotLU_decomposition", &LinalgInterface::pivotLU_decomposition<double>);
     bp::def("svd", &linalg::svd<double>);
 
     // Rotations.hpp
@@ -4406,6 +4859,8 @@ BOOST_PYTHON_MODULE(NumCpp)
         .def("zRotation", &rotations::DCM::zRotation).staticmethod("zRotation");
 
     bp::def("rodriguesRotation", &RotationsInterface::rodriguesRotation<double>);
+    bp::def("wahbasProblem", &RotationsInterface::wahbasProblem<double>);
+    bp::def("wahbasProblemWeighted", &RotationsInterface::wahbasProblemWeighted<double>);
 
     // Filters.hpp
     bp::enum_<filter::Boundary>("Mode")
@@ -4585,11 +5040,14 @@ BOOST_PYTHON_MODULE(NumCpp)
     bp::class_<Poly1d>
         ("Poly1d", bp::init<>())
         .def(bp::init<NdArray<double>, bool>())
+        .def("area", &Poly1d::area)
         .def("coefficients", &Poly1d::coefficients)
+        .def("deriv", &Poly1d::deriv)
+        .def("integ", &Poly1d::integ)
         .def("order", &Poly1d::order)
+        .def("print", &Poly1d::print)
         .def("__str__", &Poly1d::str)
         .def("__repr__", &Poly1d::str)
-        .def("print", &Poly1d::print)
         .def("__getitem__", &Poly1d::operator())
         .def("__add__", &Poly1d::operator+)
         .def("__iadd__", &Poly1d::operator+=, bp::return_internal_reference<>())
@@ -4619,6 +5077,19 @@ BOOST_PYTHON_MODULE(NumCpp)
     bp::def("spherical_harmonic", &PolynomialInterface::spherical_harmonic<double>);
     bp::def("spherical_harmonic_r", &polynomial::spherical_harmonic_r<double, double>);
     bp::def("spherical_harmonic_i", &polynomial::spherical_harmonic_i<double, double>);
+
+    // Roots.hpp
+    bp::def("bisection_roots", &RootsInterface::bisection);
+    bp::def("brent_roots", &RootsInterface::brent);
+    bp::def("dekker_roots", &RootsInterface::dekker);
+    bp::def("newton_roots", &RootsInterface::newton);
+    bp::def("secant_roots", &RootsInterface::secant);
+
+    // Integrate.hpp
+    bp::def("integrate_gauss_legendre", &IntegrateInterface::gauss_legendre);
+    bp::def("integrate_romberg", &IntegrateInterface::romberg);
+    bp::def("integrate_simpson", &IntegrateInterface::simpson);
+    bp::def("integrate_trapazoidal", &IntegrateInterface::trapazoidal);
 
     // Vec2.hpp
     bp::class_<Vec2>

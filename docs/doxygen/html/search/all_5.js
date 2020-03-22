@@ -1,7 +1,7 @@
 var searchData=
 [
   ['cube_2ehpp',['cube.hpp',['../_functions_2cube_8hpp.html',1,'']]],
-  ['f',['F',['../classnc_1_1boost_python_interface_1_1_boost_ndarray_helper.html#a6f7c27e9f931e541dc034cd7fe9c3311a800618943025315f869e4e1f09471012',1,'nc::boostPythonInterface::BoostNdarrayHelper::F()'],['../namespacenc_1_1random.html#aabf17da1f94e6da4ec99085feca10799',1,'nc::random::f()']]],
+  ['f',['F',['../classnc_1_1boost_python_interface_1_1_boost_ndarray_helper.html#a6f7c27e9f931e541dc034cd7fe9c3311a800618943025315f869e4e1f09471012',1,'nc::boostPythonInterface::BoostNdarrayHelper::F()'],['../namespacenc_1_1random.html#a00229c23da25284daf436c0a338ea25c',1,'nc::random::f(dtype inDofN, dtype inDofD)'],['../namespacenc_1_1random.html#aabf17da1f94e6da4ec99085feca10799',1,'nc::random::f(const Shape &amp;inShape, dtype inDofN, dtype inDofD)']]],
   ['f_2ehpp',['f.hpp',['../f_8hpp.html',1,'']]],
   ['factorial',['factorial',['../namespacenc_1_1special.html#a429b2caa6cf7fcbdba8ce3184c0367e3',1,'nc::special::factorial(uint32 inValue)'],['../namespacenc_1_1special.html#af28b6a68a7d599ad1f973082ec275dbc',1,'nc::special::factorial(const NdArray&lt; uint32 &gt; &amp;inArray) noexcept']]],
   ['factorial_2ehpp',['factorial.hpp',['../factorial_8hpp.html',1,'']]],
@@ -45,7 +45,7 @@ var searchData=
   ['fromfile_2ehpp',['fromFile.hpp',['../from_file_8hpp.html',1,'']]],
   ['fromiter',['fromiter',['../namespacenc.html#a0b388462989d0cb59531f753a907cce3',1,'nc']]],
   ['fromiter_2ehpp',['fromiter.hpp',['../fromiter_8hpp.html',1,'']]],
-  ['front',['front',['../classnc_1_1_data_cube.html#a007b4c69b145e15faa40d8c3be4d36ba',1,'nc::DataCube::front()'],['../classnc_1_1_nd_array.html#a5173e2d0a9fe983213193d8a4dfde21c',1,'nc::NdArray::front()']]],
+  ['front',['front',['../classnc_1_1_data_cube.html#a007b4c69b145e15faa40d8c3be4d36ba',1,'nc::DataCube::front()'],['../classnc_1_1_nd_array.html#a5173e2d0a9fe983213193d8a4dfde21c',1,'nc::NdArray::front() const noexcept'],['../classnc_1_1_nd_array.html#aa8aa3524c61aa0f0eeb333526c0bab04',1,'nc::NdArray::front() noexcept']]],
   ['full',['full',['../namespacenc.html#abf138126612998a96698ac184fc81167',1,'nc::full(uint32 inSquareSize, dtype inFillValue) noexcept'],['../namespacenc.html#a5a5bd5f0d237fc1f682a770eb5f1168d',1,'nc::full(uint32 inNumRows, uint32 inNumCols, dtype inFillValue) noexcept'],['../namespacenc.html#a40202920d9c2557bf6b1dcc4ac971135',1,'nc::full(const Shape &amp;inShape, dtype inFillValue) noexcept']]],
   ['full_2ehpp',['full.hpp',['../full_8hpp.html',1,'']]],
   ['full_5flike',['full_like',['../namespacenc.html#af041923ee46ead0c33afaca70dff0d0c',1,'nc']]],

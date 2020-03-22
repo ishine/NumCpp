@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -41,6 +41,26 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Single random value sampled from the from the 
+        ///                     "discrete" distrubution.  It produces integers in the 
+        ///                     range [0, n) with the probability of producing each value
+        ///                     is specified by the parameters of the distribution.
+        ///
+        ///	@param		inWeights
+        /// @return
+        ///				NdArray
+        ///
+        template<typename dtype>
+        dtype discrete(const NdArray<double>& inWeights)
+        {
+            STATIC_ASSERT_INTEGER(dtype);
+
+            boost::random::discrete_distribution<dtype> dist(inWeights.cbegin(), inWeights.cend());
+            return dist(generator_);
+        }
+
         //============================================================================
         // Method Description:
         ///						Create an array of the given shape and populate it with

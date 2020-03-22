@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -39,6 +39,21 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Returns a single random value sampled from the "standard normal" distribution.
+        ///
+        ///                     NumPy Reference: https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.randn.html#numpy.random.randn
+        ///
+        /// @return dtype
+        ///
+        template<typename dtype>
+        dtype randN() noexcept
+        {
+            boost::random::normal_distribution<dtype> dist;
+            return dist(generator_);
+        }
+
         //============================================================================
         // Method Description:
         ///						Create an array of the given shape and populate it with

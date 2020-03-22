@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -42,6 +42,29 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Single random value sampled from the "normal" distrubution.
+        ///
+        ///                     NumPy Reference: https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html#numpy.random.normal
+        ///
+        /// @param				inMean: Mean value of the underlying normal distribution. Default is 0.
+        /// @param  			inSigma: Standard deviation of the underlying normal distribution. Should be greater than zero. Default is 1.
+        /// @return
+        ///				NdArray
+        ///
+        template<typename dtype>
+        dtype normal(dtype inMean = 0, dtype inSigma = 1)
+        {
+            if (inSigma <= 0)
+            {
+                THROW_INVALID_ARGUMENT_ERROR("input sigma must be greater than zero.");
+            }
+
+            boost::random::normal_distribution<dtype> dist(inMean, inSigma);
+            return dist(generator_);
+        }
+
         //============================================================================
         // Method Description:
         ///						Create an array of the given shape and populate it with

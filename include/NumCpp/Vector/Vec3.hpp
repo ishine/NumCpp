@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -306,14 +306,14 @@ namespace nc
 
         //============================================================================
         // Method Description:
-        ///						Returns the Vec2 as a string
+        ///						Returns the Vec3 as a string
         ///
         /// @return     std::string
         ///
         std::string toString() const noexcept
         {
             std::stringstream stream;
-            stream << "Vec2[" << x << ", " << y << ", " << z << "]";
+            stream << "Vec3[" << x << ", " << y << ", " << z << "]";
             return stream.str();
         }
 

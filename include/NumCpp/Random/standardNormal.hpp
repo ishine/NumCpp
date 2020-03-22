@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -36,6 +36,22 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Single random value sampled from the "standard normal" distrubution with
+        ///						mean = 0 and std = 1
+        ///
+        ///                     NumPy Reference: https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.standard_normal.html#numpy.random.standard_normal
+        ///
+        /// @return
+        ///				NdArray
+        ///
+        template<typename dtype>
+        dtype standardNormal() noexcept
+        {
+            return normal<dtype>(0, 1);
+        }
+
         //============================================================================
         // Method Description:
         ///						Create an array of the given shape and populate it with

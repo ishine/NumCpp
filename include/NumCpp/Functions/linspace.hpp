@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -86,13 +86,14 @@ namespace nc
             else
             {
                 NdArray<dtype> returnArray(1, inNum);
-                returnArray[0] = inStart;
-                returnArray[inNum - 1] = inStop;
+                returnArray.front() = inStart;
+                returnArray.back() = inStop;
 
-                dtype step = (inStop - inStart) / (inNum - 1);
+                dtype step = (inStop - inStart) / static_cast<dtype>(inNum - 1);
+
                 for (uint32 i = 1; i < inNum - 1; ++i)
                 {
-                    returnArray[i] = returnArray[i - 1] + step;
+                    returnArray[i] = inStart + static_cast<dtype>(i) * step;
                 }
 
                 return returnArray;
@@ -109,12 +110,13 @@ namespace nc
             else
             {
                 NdArray<dtype> returnArray(1, inNum);
-                returnArray[0] = inStart;
+                returnArray.front() = inStart;
 
-                dtype step = (inStop - inStart) / inNum;
+                dtype step = (inStop - inStart) / static_cast<dtype>(inNum);
+
                 for (uint32 i = 1; i < inNum; ++i)
                 {
-                    returnArray[i] = returnArray[i - 1] + step;
+                    returnArray[i] = inStart + static_cast<dtype>(i) * step;
                 }
 
                 return returnArray;

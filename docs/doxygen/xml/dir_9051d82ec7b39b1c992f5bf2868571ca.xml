@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
   <compounddef id="dir_9051d82ec7b39b1c992f5bf2868571ca" kind="dir">
     <compoundname>Functions</compoundname>
     <innerfile refid="abs_8hpp">abs.hpp</innerfile>
@@ -58,8 +58,9 @@
     <innerfile refid="deg2rad_8hpp">deg2rad.hpp</innerfile>
     <innerfile refid="degrees_8hpp">degrees.hpp</innerfile>
     <innerfile refid="delete_indices_8hpp">deleteIndices.hpp</innerfile>
-    <innerfile refid="diag_flat_8hpp">diagFlat.hpp</innerfile>
-    <innerfile refid="diagnol_8hpp">diagnol.hpp</innerfile>
+    <innerfile refid="diag_8hpp">diag.hpp</innerfile>
+    <innerfile refid="diagflat_8hpp">diagflat.hpp</innerfile>
+    <innerfile refid="diagonal_8hpp">diagonal.hpp</innerfile>
     <innerfile refid="diff_8hpp">diff.hpp</innerfile>
     <innerfile refid="divide_8hpp">divide.hpp</innerfile>
     <innerfile refid="dot_8hpp">dot.hpp</innerfile>
@@ -153,6 +154,7 @@
     <innerfile refid="not__equal_8hpp">not_equal.hpp</innerfile>
     <innerfile refid="ones_8hpp">ones.hpp</innerfile>
     <innerfile refid="ones__like_8hpp">ones_like.hpp</innerfile>
+    <innerfile refid="outer_8hpp">outer.hpp</innerfile>
     <innerfile refid="pad_8hpp">pad.hpp</innerfile>
     <innerfile refid="partition_8hpp">partition.hpp</innerfile>
     <innerfile refid="percentile_8hpp">percentile.hpp</innerfile>
@@ -195,6 +197,7 @@
     <innerfile refid="stdev_8hpp">stdev.hpp</innerfile>
     <innerfile refid="subtract_8hpp">subtract.hpp</innerfile>
     <innerfile refid="sum_8hpp">sum.hpp</innerfile>
+    <innerfile refid="swap_8hpp">swap.hpp</innerfile>
     <innerfile refid="swapaxes_8hpp">swapaxes.hpp</innerfile>
     <innerfile refid="tan_8hpp">tan.hpp</innerfile>
     <innerfile refid="tanh_8hpp">tanh.hpp</innerfile>
@@ -219,6 +222,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="C:/GitHub/NumCpp/include/NumCpp/Functions/"/>
+    <location file="C:/Users/pilgeda/Documents/GitHub/NumCpp/include/NumCpp/Functions/"/>
   </compounddef>
 </doxygen>

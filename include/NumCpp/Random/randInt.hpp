@@ -4,7 +4,7 @@
 /// @version 1.1
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -43,6 +43,37 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Return random integer from low (inclusive) to high (exclusive),
+        ///						with the given shape. If no high value is input then the range will 
+        ///                     go from [0, low).
+        ///
+        ///                     NumPy Reference: https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.randint.html#numpy.random.randint
+        ///
+        /// @param				inLow
+        /// @param				inHigh default 0.
+        /// @return
+        ///				NdArray
+        ///
+        template<typename dtype>
+        dtype randInt(dtype inLow, dtype inHigh = 0)
+        {
+            STATIC_ASSERT_INTEGER(dtype);
+
+            if (inLow == inHigh)
+            {
+                THROW_INVALID_ARGUMENT_ERROR("input low value must be less than the input high value.");
+            }
+            else if (inLow > inHigh - 1)
+            {
+                std::swap(inLow, inHigh);
+            }
+
+            const boost::random::uniform_int_distribution<dtype> dist(inLow, inHigh - 1);
+            return dist(generator_);
+        }
+
         //============================================================================
         // Method Description:
         ///						Return random integers from low (inclusive) to high (exclusive),

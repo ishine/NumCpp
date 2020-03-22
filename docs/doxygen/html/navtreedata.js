@@ -24,8 +24,8 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "NumCpp", "index.html", [
-    [ "NumCpp: A Templatized Header Only C++ Implementation of the <a href=\"http://www.numpy.org\">Python NumPy Library</a>", "index.html", null ],
-    [ "Installation", "md__c_1__git_hub__num_cpp_install__r_e_a_d_m_e.html", null ],
+    [ "NumCpp: A Templatized Header Only C++ Implementation of the [Python NumPy Library](http://www.numpy.org)", "index.html", null ],
+    [ "Installation", "md__c_1__users_pilgeda__documents__git_hub__num_cpp_install__r_e_a_d_m_e.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -39,6 +39,7 @@ var NAVTREE =
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
@@ -61,15 +62,16 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_boost_interface_8hpp.html",
-"abs_8hpp.html#ae8445c38053ae358e2588b45a8b0ba9b",
-"classnc_1_1_dtype_info.html#a039ecfb9a5bd9fe0cb751a59f28055d1",
-"classnc_1_1_vec2.html#a271ca2cae96a1df44486fbcc2c0f890f",
-"classnc_1_1rotations_1_1_quaternion.html#a60f1f33144c887cde1338fd80183638f",
-"fmin_8hpp.html",
-"lstsq_8hpp_source.html",
-"permutation_8hpp.html#ae0b8066f06a5f5b5a0baee76c5030892",
-"tri_8hpp.html#a9464c274ad7737a74f70afe33a5b2f72"
+"_bisection_8hpp.html",
+"_special_2beta_8hpp_source.html",
+"bessel__jn_8hpp.html#a1e3b088bf26f1fbd1a8546c09d77d113",
+"classnc_1_1_nd_array.html#ae6c5dd42c2e1e36615d4dfe2c916afff",
+"classnc_1_1integrate_1_1_legendre_polynomial.html#a062ffe2d1f94af05d62ff9e0ee500581",
+"diagflat_8hpp.html",
+"generate_threshold_8hpp.html#a356989d12dda6e1b0748d22d50d4ecaa",
+"namespacemembers_t.html",
+"reshape_8hpp.html",
+"weibull_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -39,6 +39,24 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Single random value sampled from the "laplace" distrubution.
+        ///
+        ///                     NumPy Reference: https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.laplace.html#numpy.random.laplace
+        ///
+        /// @param				inLoc: (The position, mu, of the distribution peak. Default is 0)
+        /// @param				inScale: (float optional the exponential decay. Default is 1)
+        /// @return
+        ///				NdArray
+        ///
+        template<typename dtype>
+        dtype laplace(dtype inLoc = 0, dtype inScale = 1) noexcept
+        {
+            const boost::random::laplace_distribution<dtype> dist(inLoc, inScale);
+            return dist(generator_); 
+        }
+
         //============================================================================
         // Method Description:
         ///						Create an array of the given shape and populate it with

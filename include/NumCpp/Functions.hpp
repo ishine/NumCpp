@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -87,8 +87,9 @@
 #include "NumCpp/Functions/deg2rad.hpp"
 #include "NumCpp/Functions/degrees.hpp"
 #include "NumCpp/Functions/deleteIndices.hpp"
-#include "NumCpp/Functions/diagFlat.hpp"
-#include "NumCpp/Functions/diagnol.hpp"
+#include "NumCpp/Functions/diag.hpp"
+#include "NumCpp/Functions/diagflat.hpp"
+#include "NumCpp/Functions/diagonal.hpp"
 #include "NumCpp/Functions/diff.hpp"
 #include "NumCpp/Functions/divide.hpp"
 #include "NumCpp/Functions/dot.hpp"
@@ -193,6 +194,7 @@
 
 #include "NumCpp/Functions/ones.hpp"
 #include "NumCpp/Functions/ones_like.hpp"
+#include "NumCpp/Functions/outer.hpp"
 
 #include "NumCpp/Functions/pad.hpp"
 #include "NumCpp/Functions/partition.hpp"
@@ -238,6 +240,7 @@
 #include "NumCpp/Functions/stdev.hpp"
 #include "NumCpp/Functions/subtract.hpp"
 #include "NumCpp/Functions/sum.hpp"
+#include "NumCpp/Functions/swap.hpp"
 #include "NumCpp/Functions/swapaxes.hpp"
 
 #include "NumCpp/Functions/tan.hpp"

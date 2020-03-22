@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -58,7 +58,7 @@ namespace nc
         constexpr explicit Shape(uint32 inSquareSize) noexcept :
             rows(inSquareSize),
             cols(inSquareSize)
-        {};
+        {}
 
         //============================================================================
         ///						Constructor
@@ -69,7 +69,7 @@ namespace nc
         constexpr Shape(uint32 inRows, uint32 inCols) noexcept :
             rows(inRows),
             cols(inCols)
-        {};
+        {}
 
         //============================================================================
         ///						Equality operator
@@ -114,6 +114,16 @@ namespace nc
         constexpr bool isnull() const noexcept
         {
             return rows == 0 && cols == 0;
+        }
+
+        //============================================================================
+        ///						Returns whether the shape is square or not.
+        ///
+        /// @return     bool
+        ///
+        constexpr bool issquare() const noexcept
+        {
+            return rows == cols;
         }
 
         //============================================================================

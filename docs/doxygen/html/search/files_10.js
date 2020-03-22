@@ -2,10 +2,12 @@ var searchData=
 [
   ['beta_2ehpp',['beta.hpp',['../_special_2beta_8hpp.html',1,'']]],
   ['gamma_2ehpp',['gamma.hpp',['../_special_2gamma_8hpp.html',1,'']]],
+  ['secant_2ehpp',['Secant.hpp',['../_secant_8hpp.html',1,'']]],
   ['setdiff1d_2ehpp',['setdiff1d.hpp',['../setdiff1d_8hpp.html',1,'']]],
   ['shuffle_2ehpp',['shuffle.hpp',['../shuffle_8hpp.html',1,'']]],
   ['sign_2ehpp',['sign.hpp',['../sign_8hpp.html',1,'']]],
   ['signbit_2ehpp',['signbit.hpp',['../signbit_8hpp.html',1,'']]],
+  ['simpson_2ehpp',['simpson.hpp',['../simpson_8hpp.html',1,'']]],
   ['sin_2ehpp',['sin.hpp',['../sin_8hpp.html',1,'']]],
   ['sinc_2ehpp',['sinc.hpp',['../sinc_8hpp.html',1,'']]],
   ['sinh_2ehpp',['sinh.hpp',['../sinh_8hpp.html',1,'']]],
@@ -31,5 +33,6 @@ var searchData=
   ['sum_2ehpp',['sum.hpp',['../sum_8hpp.html',1,'']]],
   ['svd_2ehpp',['svd.hpp',['../svd_8hpp.html',1,'']]],
   ['svdclass_2ehpp',['SVDClass.hpp',['../_s_v_d_class_8hpp.html',1,'']]],
+  ['swap_2ehpp',['swap.hpp',['../swap_8hpp.html',1,'']]],
   ['swapaxes_2ehpp',['swapaxes.hpp',['../swapaxes_8hpp.html',1,'']]]
 ];

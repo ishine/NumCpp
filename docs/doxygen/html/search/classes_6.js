@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quaternion',['Quaternion',['../classnc_1_1rotations_1_1_quaternion.html',1,'nc::rotations']]]
+  ['legendrepolynomial',['LegendrePolynomial',['../classnc_1_1integrate_1_1_legendre_polynomial.html',1,'nc::integrate']]]
 ];

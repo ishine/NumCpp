@@ -4,10 +4,10 @@
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
 ///
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -36,22 +36,28 @@
 #include "NumCpp/Filter.hpp"
 #include "NumCpp/Functions.hpp"
 #include "NumCpp/ImageProcessing.hpp"
+#include "NumCpp/Integrate.hpp"
 #include "NumCpp/Linalg.hpp"
 #include "NumCpp/NdArray.hpp"
 #include "NumCpp/Polynomial.hpp"
 #include "NumCpp/PythonInterface.hpp"
 #include "NumCpp/Random.hpp"
+#include "NumCpp/Roots.hpp"
 #include "NumCpp/Rotations.hpp"
 #include "NumCpp/Special.hpp"
 #include "NumCpp/Utils.hpp"
 #include "NumCpp/Vector.hpp"
 
-/// \example ReadMe.cpp
-/// Examples from the Quick Start Guide in README.md at [GitHub Repository](https://github.com/dpilger26/NumCpp)
+/// \example GaussNewtonNlls.cpp
+/// Example for using the linalg::gaussNewtonNlls function
 ///
 /// \example InterfaceWithEigen.cpp
 /// Example for interfaceing with Eigen Matrix
-
 ///
 /// \example InterfaceWithOpenCV.cpp
 /// Example for interfaceing with OpenCV Mat
+///
+/// \example ReadMe.cpp
+/// Examples from the Quick Start Guide in README.md at [GitHub Repository](https://github.com/dpilger26/NumCpp)
+///
+

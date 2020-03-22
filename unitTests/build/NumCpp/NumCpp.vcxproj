@@ -40,6 +40,7 @@
     <ClInclude Include="..\..\..\include\NumCpp\Core\Slice.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Core\Timer.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Core\Types.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Core\TypeTraits.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Filter.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Filter\Boundaries\Boundaries1d\addBoundary1d.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Filter\Boundaries\Boundaries1d\constant1d.hpp" />
@@ -133,8 +134,9 @@
     <ClInclude Include="..\..\..\include\NumCpp\Functions\deg2rad.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\degrees.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\deleteIndices.hpp" />
-    <ClInclude Include="..\..\..\include\NumCpp\Functions\diagFlat.hpp" />
-    <ClInclude Include="..\..\..\include\NumCpp\Functions\diagnol.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Functions\diag.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Functions\diagflat.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Functions\diagonal.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\diff.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\divide.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\dot.hpp" />
@@ -228,6 +230,7 @@
     <ClInclude Include="..\..\..\include\NumCpp\Functions\not_equal.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\ones.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\ones_like.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Functions\outer.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\pad.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\partition.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\percentile.hpp" />
@@ -270,6 +273,7 @@
     <ClInclude Include="..\..\..\include\NumCpp\Functions\stdev.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\subtract.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\sum.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Functions\swap.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\swapaxes.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\tan.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Functions\tanh.hpp" />
@@ -301,16 +305,27 @@
     <ClInclude Include="..\..\..\include\NumCpp\ImageProcessing\generateThreshold.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\ImageProcessing\Pixel.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\ImageProcessing\windowExceedances.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Integrate.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Integrate\gauss_legendre.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Integrate\romberg.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Integrate\simpson.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Integrate\trapazoidal.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Linalg\cholesky.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg\det.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Linalg\gaussNewtonNlls.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg\hat.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg\inv.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg\lstsq.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Linalg\lu_decomposition.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg\matrix_power.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg\multi_dot.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Linalg\pivotLU_decomposition.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg\svd.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Linalg\svd\SVDClass.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\NdArray.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\NdArray\NdArrayCore.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\NdArray\NdArrayOperators.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Polynomial.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Polynomial\chebyshev_t.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Polynomial\chebyshev_u.hpp" />
@@ -356,10 +371,18 @@
     <ClInclude Include="..\..\..\include\NumCpp\Random\uniform.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Random\uniformOnSphere.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Random\weibull.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Roots.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Roots\Bisection.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Roots\Brent.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Roots\Dekker.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Roots\Iteration.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Roots\Newton.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Roots\Secant.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Rotations.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Rotations\DCM.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Rotations\Quaternion.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Rotations\rodriguesRotation.hpp" />
+    <ClInclude Include="..\..\..\include\NumCpp\Rotations\wahbasProblem.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Special.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Special\airy_ai.hpp" />
     <ClInclude Include="..\..\..\include\NumCpp\Special\airy_ai_prime.hpp" />
@@ -521,7 +544,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnablePREfast>false</EnablePREfast>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

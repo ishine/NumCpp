@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -42,6 +42,32 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Single random value sampled from the "extreme value" distrubution.
+        ///
+        /// @param				inA (default 1)
+        /// @param				inB (default 1)
+        /// @return
+        ///				NdArray
+        ///
+        template<typename dtype>
+        dtype extremeValue(dtype inA = 1, dtype inB = 1)
+        {
+            if (inA <= 0)
+            {
+                THROW_INVALID_ARGUMENT_ERROR("input a must be greater than zero.");
+            }
+
+            if (inB <= 0)
+            {
+                THROW_INVALID_ARGUMENT_ERROR("input b must be greater than zero.");
+            }
+
+            const boost::random::extreme_value_distribution<dtype> dist(inA, inB);
+            return dist(generator_);
+        }
+
         //============================================================================
         // Method Description:
         ///						Create an array of the given shape and populate it with

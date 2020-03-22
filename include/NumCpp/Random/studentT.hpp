@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -43,6 +43,28 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Single random value sampled from the "student-T" distribution.
+        ///
+        ///                     NumPy Reference: https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.standard_t.html#numpy.random.standard_t
+        ///
+        /// @param				inDof independent random variables
+        /// @return
+        ///				NdArray
+        ///
+        template<typename dtype>
+        dtype studentT(dtype inDof)
+        {
+            if (inDof <= 0)
+            {
+                THROW_INVALID_ARGUMENT_ERROR("degrees of freedom must be greater than zero.");
+            }
+
+            boost::random::student_t_distribution<dtype> dist(inDof);
+            return dist(generator_);
+        }
+
         //============================================================================
         // Method Description:
         ///						Create an array of the given shape and populate it with

@@ -1,10 +1,12 @@
 var searchData=
 [
   ['gamma1pm1_2ehpp',['gamma1pm1.hpp',['../gamma1pm1_8hpp.html',1,'']]],
+  ['gauss_5flegendre_2ehpp',['gauss_legendre.hpp',['../gauss__legendre_8hpp.html',1,'']]],
   ['gaussian_2ehpp',['gaussian.hpp',['../gaussian_8hpp.html',1,'']]],
   ['gaussian1d_2ehpp',['gaussian1d.hpp',['../gaussian1d_8hpp.html',1,'']]],
   ['gaussianfilter_2ehpp',['gaussianFilter.hpp',['../gaussian_filter_8hpp.html',1,'']]],
   ['gaussianfilter1d_2ehpp',['gaussianFilter1d.hpp',['../gaussian_filter1d_8hpp.html',1,'']]],
+  ['gaussnewtonnlls_2ehpp',['gaussNewtonNlls.hpp',['../gauss_newton_nlls_8hpp.html',1,'']]],
   ['gcd_2ehpp',['gcd.hpp',['../gcd_8hpp.html',1,'']]],
   ['generatecentroids_2ehpp',['generateCentroids.hpp',['../generate_centroids_8hpp.html',1,'']]],
   ['generatethreshold_2ehpp',['generateThreshold.hpp',['../generate_threshold_8hpp.html',1,'']]],

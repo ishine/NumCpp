@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -42,6 +42,34 @@ namespace nc
 {
     namespace random
     {
+        //============================================================================
+        // Method Description:
+        ///						Single random value sampled from the "F" distrubution.
+        ///
+        ///                     NumPy Reference: https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.f.html#numpy.random.f
+        ///
+        /// @param				inDofN: Degrees of freedom in numerator. Should be greater than zero.
+        /// @param				inDofD: Degrees of freedom in denominator. Should be greater than zero.
+        /// @return
+        ///				NdArray
+        ///
+        template<typename dtype>
+        dtype f(dtype inDofN, dtype inDofD)
+        {
+            if (inDofN <= 0)
+            {
+                THROW_INVALID_ARGUMENT_ERROR("numerator degrees of freedom should be greater than zero.");
+            }
+
+            if (inDofD <= 0)
+            {
+                THROW_INVALID_ARGUMENT_ERROR("denominator degrees of freedom should be greater than zero.");
+            }
+
+            boost::random::fisher_f_distribution<dtype> dist(inDofN, inDofD);
+            return dist(generator_);
+        }
+
         //============================================================================
         // Method Description:
         ///						Create an array of the given shape and populate it with

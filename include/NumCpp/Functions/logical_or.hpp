@@ -1,10 +1,10 @@
 /// @file
 /// @author David Pilger <dpilger26@gmail.com>
 /// [GitHub Repository](https://github.com/dpilger26/NumCpp)
-/// @version 1.2
+/// @version 1.3
 ///
 /// @section License
-/// Copyright 2019 David Pilger
+/// Copyright 2020 David Pilger
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this
 /// software and associated documentation files(the "Software"), to deal in the Software
@@ -51,18 +51,6 @@ namespace nc
     template<typename dtype>
     NdArray<bool> logical_or(const NdArray<dtype>& inArray1, const NdArray<dtype>& inArray2)
     {
-        if (inArray1.shape() != inArray2.shape())
-        {
-            THROW_INVALID_ARGUMENT_ERROR("input array shapes are not consistant.");
-        }
-
-        NdArray<bool> returnArray(inArray1.shape());
-        stl_algorithms::transform(inArray1.cbegin(), inArray1.cend(), inArray2.cbegin(), returnArray.begin(),
-            [](dtype inValue1, dtype inValue2) noexcept -> bool
-            { 
-                return (inValue1 != 0) || (inValue2 != 0);
-            });
-
-        return returnArray;
+        return inArray1 || inArray2;
     }
 }
